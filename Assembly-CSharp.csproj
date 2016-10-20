@@ -45,11 +45,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AlertController.cs" />
+     <Compile Include="Assets\scripts\AlertController.cs" />
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\InteractScripts.cs" />
-     <Compile Include="Assets\scripts\Main.cs" />
-     <Compile Include="Assets\scripts\StartGame.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
