@@ -15,6 +15,7 @@ public class InteractScripts : MonoBehaviour {
 
 	public void HideAllButton()  
 	{    
+
 		foreach (Transform child in transform)     
 		{  
 			child.gameObject.SetActiveRecursively(false);   
@@ -23,9 +24,18 @@ public class InteractScripts : MonoBehaviour {
 
 	public void ShowAllButton()  
 	{    
+		StartCoroutine(ExecuteAfterTime(10000));
+		Debug.Log("really?");
 		foreach (Transform child in transform)     
 		{  
 			child.gameObject.SetActiveRecursively(true);   
 		}   
+	}
+
+	IEnumerator ExecuteAfterTime(float time)
+	{
+		yield return new WaitForSeconds(time);
+		
+		// Code to execute after the delay
 	}
 }
