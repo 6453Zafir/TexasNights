@@ -45,14 +45,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraController.cs" />
      <Compile Include="Assets\Main.cs" />
      <Compile Include="Assets\Script.cs" />
      <Compile Include="Assets\StartGame.cs" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
