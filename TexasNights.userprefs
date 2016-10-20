@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\TexasOnline\Assets\scripts\CameraController.cs">
+    <Files>
+      <File FileName="..\..\..\TexasOnline\Assets\scripts\CameraController.cs" Line="7" Column="32" />
+      <File FileName="..\..\..\TexasOnline\Assets\scripts\StartGame.cs" Line="4" Column="41" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
