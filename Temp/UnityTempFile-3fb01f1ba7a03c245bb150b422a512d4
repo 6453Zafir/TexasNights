@@ -77,6 +77,7 @@
 -define:UNITY_EDITOR_WIN
 -define:UNITY_TEAM_LICENSE
 -define:UNITY_PRO_LICENSE
+Assets/cc.cs
 Assets/scripts/AlertController.cs
 Assets/scripts/CameraController.cs
 Assets/scripts/InteractScripts.cs

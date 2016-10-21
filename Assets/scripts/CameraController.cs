@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
-	public float greetingScreen = 0.85f;
-	public float fullScreen = 3.75f;
-	public float boardScreen = 2.37f;
+	public float greetingScreen = 85f;
+	public float fullScreen = 375f;
+	public float boardScreen = 237f;
 	public Camera MainMenucamera;
 	private Animator CamAniController;
 	private bool isStarted = false;
@@ -13,7 +13,6 @@ public class CameraController : MonoBehaviour {
 	private bool settingOpen = false;
 	private bool richlist = false; 
 	private bool store = false;
-
 
 	void Start () {	
 		CamAniController = GetComponent<Animator>();
@@ -37,24 +36,24 @@ public class CameraController : MonoBehaviour {
 				CamAniController.SetBool ("settingListOpen", false);
 				CamAniController.SetBool ("richListOpen", false);
 				CamAniController.SetBool ("storeOpen", false);
-				GameObject.Find("InteractElements").GetComponent<InteractScripts>().ShowAllButton();			
+			//GameObject.Find("InteractElements").GetComponent<InteractScripts>().ShowAllButton();			
 			}else{
 				Debug.Log("nothing opend");
 			}
 		}
 	}
 
-	public void ZoomToFullAnimation(){
+	public void ZoomToFull(){
 		CamAniController.SetBool ("isStarted", true);
 	}
 
-	public void ZoomToInfoAnimation(){
+	public void ZoomToInfo(){
 		CamAniController.SetBool ("InfoOpen", true);
 	}
-	public void ZoomToFriendListAnimation(){
+	public void ZoomToFriendList(){
 		CamAniController.SetBool ("friendListOpen", true);
 	}
-	public void ZoomToSettingAnimation(){
+	public void ZoomToSetting(){
 		CamAniController.SetBool ("settingListOpen", true);
 	}
 	public void SlideToRichlist(){
@@ -64,18 +63,18 @@ public class CameraController : MonoBehaviour {
 		CamAniController.SetBool ("storeOpen", true);
 	}
 
-
-	public void ZoomoutToFull(){
-		MainMenucamera.orthographicSize = fullScreen;
-		transform.position = new Vector3(0, 0, 0);
+	/*
+		public void ZoomoutToFull(){
+			MainMenucamera.orthographicSize = fullScreen;
+			transform.position = new Vector3(0, 0, 0);
+		}
+		public void ZoomToGreeting(){
+			transform.position = new Vector3(-380f, 93f, -10);
+			MainMenucamera.orthographicSize = greetingScreen;
+		}
+		public void ZoomToInfo(){
+			transform.position = new Vector3(-284f, 139f, -10);
+			MainMenucamera.orthographicSize = boardScreen;
 	}
-	public void ZoomToGreeting(){
-		transform.position = new Vector3(-3.8f, 0.93f, 0);
-		MainMenucamera.orthographicSize = greetingScreen;
-	}
-
-	public void ZoomToInfo(){
-		transform.position = new Vector3(-2.84f, 1.39f, 0);
-		MainMenucamera.orthographicSize = boardScreen;
-	}
+	*/
 }
