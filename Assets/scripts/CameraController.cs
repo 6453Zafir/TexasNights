@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 	public float fullScreen = 375f;
 	public float boardScreen = 237f;
 	public Camera MainMenucamera;
+	public GameObject FlexableCanvas;
 	private Animator CamAniController;
 	private bool isStarted = false;
 	private bool InfoOpen = false;
@@ -36,7 +37,7 @@ public class CameraController : MonoBehaviour {
 				CamAniController.SetBool ("settingListOpen", false);
 				CamAniController.SetBool ("richListOpen", false);
 				CamAniController.SetBool ("storeOpen", false);
-			//GameObject.Find("InteractElements").GetComponent<InteractScripts>().ShowAllButton();			
+				FlexableCanvas.GetComponent<AlertController>().hideall();
 			}else{
 				Debug.Log("nothing opend");
 			}

@@ -1,0 +1,155 @@
+fileFormatVersion: 2
+guid: 994c4371099f71241913af647a6e8edb
+timeCreated: 1476847793
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: teble
+    21300002: add
+    21300004: dragbar
+    21300006: addtime
+    21300008: follow
+    21300010: timer
+    21300012: giveup
+    21300014: helpbutton
+    21300016: store
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: teble
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 27
+        width: 1054
+        height: 612
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: add
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 483
+        width: 138
+        height: 136
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dragbar
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 266
+        width: 56
+        height: 352
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: addtime
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 317
+        width: 156
+        height: 160
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: follow
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 146
+        width: 154
+        height: 158
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timer
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 183
+        width: 92
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: giveup
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 3
+        width: 138
+        height: 138
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: helpbutton
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 109
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: store
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 35
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
