@@ -9,7 +9,7 @@ http/websoket
 ##Directory structure
 Assets：
 * resources --including all the art resources and fonts
-* scripts -- all the scripts that control the game
+* scripts -- all the scripts that control the game,all in C#
 * animations -- animations for all gameobjects
 * scenes -- including the main menu scene and play scene
 * prefabs -- all elements that may be created and destoried during the runtime
