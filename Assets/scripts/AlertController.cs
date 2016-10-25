@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class AlertController : MonoBehaviour {
-	public int s = 0;
+
+	public bool isChooseOpen = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -19,7 +20,7 @@ public class AlertController : MonoBehaviour {
 				child.gameObject.SetActive (true);
 			Animation a =  child.GetComponent<Animation>();
 			a.Play();
-			a["infoBoard"].speed = 2;	
+			a["infoBoard"].speed = 3;	
 			} else {
 				child.gameObject.SetActive(false);
 			}
@@ -31,7 +32,7 @@ public class AlertController : MonoBehaviour {
 			child.gameObject.SetActive (true);
 			Animation a =  child.GetComponent<Animation>();
 			a.Play();
-			a["friendlistBoard"].speed = 2;	
+			a["friendlistBoard"].speed = 3;	
 		} else {
 			child.gameObject.SetActive(false);
 		}
@@ -43,11 +44,28 @@ public class AlertController : MonoBehaviour {
 			child.gameObject.SetActive (true);
 			Animation a =  child.GetComponent<Animation>();
 			a.Play();
-			a["settingBoard"].speed = 2;	
+			a["settingBoard"].speed = 3;	
 		} else {
 			child.gameObject.SetActive(false);
 		}
 	}
+
+	public void alertChoose(){
+		if (!isChooseOpen) {
+			foreach (Transform child in transform)
+			if (child.name == "ChooseRoomView") {
+				child.gameObject.SetActive (true);
+				Animation a =  child.GetComponent<Animation>();
+				a.Play();
+				a["chooseRoomBoard"].speed = 3;	
+				isChooseOpen = true;
+			} else {
+				child.gameObject.SetActive(false);
+			}
+		}
+
+	}
+
 	public void hideall() {
 		foreach (Transform child in transform)
 			child.gameObject.SetActive(false);

@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour {
 	private bool settingOpen = false;
 	private bool richlist = false; 
 	private bool store = false;
+	private bool isChooseOpen = false;
 
 	void Start () {	
 		CamAniController = GetComponent<Animator>();
@@ -27,16 +28,17 @@ public class CameraController : MonoBehaviour {
 		settingOpen = CamAniController.GetBool ("settingListOpen");
 		richlist = CamAniController.GetBool ("richListOpen");
 		store = CamAniController.GetBool("storeOpen");
-
+		isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;
 		if (Input.GetMouseButtonDown(0)) {
 			//Debug.Log ("isStarted "+isStarted + "   InfoOpen "+InfoOpen + "   friendListOpen "+friendListOpen);
 			if(isStarted == true && InfoOpen == true || friendListOpen == true ||
-			   settingOpen == true || richlist ==true || store == true ){
+			   settingOpen == true || richlist ==true || store == true || isChooseOpen == true ){
 				CamAniController.SetBool ("InfoOpen", false);
 				CamAniController.SetBool ("friendListOpen", false);
 				CamAniController.SetBool ("settingListOpen", false);
 				CamAniController.SetBool ("richListOpen", false);
 				CamAniController.SetBool ("storeOpen", false);
+				FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
 				FlexableCanvas.GetComponent<AlertController>().hideall();
 			}else{
 				Debug.Log("nothing opend");
