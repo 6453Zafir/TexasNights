@@ -25,50 +25,47 @@ public class CameraController : MonoBehaviour {
 
 	void Update () {
 		isStarted = CamAniController.GetBool ("isStarted");
-		Debug.Log (isStarted);
 		InfoOpen = CamAniController.GetBool ("InfoOpen");
 		friendListOpen = CamAniController.GetBool ("friendListOpen");
 		settingOpen = CamAniController.GetBool ("settingListOpen");
 		richlist = CamAniController.GetBool ("richListOpen");
 		store = CamAniController.GetBool("storeOpen");
 		isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
-			if(isStarted){
-				if(isLogin){
-					if (Input.GetMouseButtonDown(0)){
-						if(InfoOpen || friendListOpen || settingOpen || richlist || store || isChooseOpen ){
-							CamAniController.SetBool ("InfoOpen", false);
-							CamAniController.SetBool ("friendListOpen", false);
-							CamAniController.SetBool ("settingListOpen", false);
-							CamAniController.SetBool ("richListOpen", false);
-							CamAniController.SetBool ("storeOpen", false);
-							FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
-							FlexableCanvas.GetComponent<AlertController>().hideall();
-						}else{
-							Debug.Log("nothing opend");
-							 }
-						}
-				}else{
-					Invoke("ZoomToInfo",0);
-					FlexableCanvas.GetComponent<AlertController>().alertInfo();
-					isLogin = true;
-					Debug.Log("start the game but haven't login");					
+		if(isStarted){
+			if(isLogin){
+				if (Input.GetMouseButtonDown(0)){
+					if(InfoOpen || friendListOpen || settingOpen || richlist || store || isChooseOpen ){
+						CamAniController.SetBool ("InfoOpen", false);
+						CamAniController.SetBool ("friendListOpen", false);
+						CamAniController.SetBool ("settingListOpen", false);
+						CamAniController.SetBool ("richListOpen", false);
+						CamAniController.SetBool ("storeOpen", false);
+						FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
+						FlexableCanvas.GetComponent<AlertController>().hideall();
+					}else{
+						Debug.Log("nothing opend");
+						 }
 					}
 			}else{
-				if(isLogin){
-					Debug.Log("has login but somehow didn't able to start the game");
-				}else{
-					Debug.Log(":( ):");
+				Invoke("ZoomToInfo",0);
+				FlexableCanvas.GetComponent<AlertController>().alertInfo();
+				isLogin = true;
+				Debug.Log("start the game but haven't login");					
 				}
+		}else{
+			if(isLogin){
+				Debug.Log("has login but somehow didn't able to start the game");
+			}else{
+				Debug.Log("have't start the game :(");
 			}
-		
+		}	
 	}
 
 	public void ZoomToFull(){
 		CamAniController.SetBool ("isStarted", true);
 	}
-
 	public void ZoomToInfo(){
-			CamAniController.SetBool ("InfoOpen", true);
+		CamAniController.SetBool ("InfoOpen", true);
 	}
 	public void ZoomToFriendList(){
 		CamAniController.SetBool ("friendListOpen", true);
@@ -82,20 +79,5 @@ public class CameraController : MonoBehaviour {
 	public void SlideToStore(){
 		CamAniController.SetBool ("storeOpen", true);
 	}
-
-
-	/*
-		public void ZoomoutToFull(){
-			MainMenucamera.orthographicSize = fullScreen;
-			transform.position = new Vector3(0, 0, 0);
-		}
-		public void ZoomToGreeting(){
-			transform.position = new Vector3(-380f, 93f, -10);
-			MainMenucamera.orthographicSize = greetingScreen;
-		}
-		public void ZoomToInfo(){
-			transform.position = new Vector3(-284f, 139f, -10);
-			MainMenucamera.orthographicSize = boardScreen;
-	}
-	*/
+	
 }
