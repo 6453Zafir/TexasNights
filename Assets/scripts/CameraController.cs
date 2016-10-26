@@ -7,8 +7,9 @@ public class CameraController : MonoBehaviour {
 	public float boardScreen = 237f;
 	public Camera MainMenucamera;
 	public GameObject FlexableCanvas;
-	public bool isLogin = false;
 	public float secsToNext= 0.01f;
+
+	private bool isLogin = false;
 	private Animator CamAniController;
 	private bool isStarted = false;
 	private bool InfoOpen = false;
@@ -48,14 +49,9 @@ public class CameraController : MonoBehaviour {
 						}
 				}else{
 					Invoke("ZoomToInfo",0);
-					secsToNext -= Time.deltaTime;  // T.dt is secs since last update
-					if(secsToNext<=0) {
-					secsToNext = 0.01f;
-						FlexableCanvas.GetComponent<AlertController>().alertInfo();
-						isLogin = true;
-						Debug.Log("start the game but haven't login");
-					}
-					
+					FlexableCanvas.GetComponent<AlertController>().alertInfo();
+					isLogin = true;
+					Debug.Log("start the game but haven't login");					
 					}
 			}else{
 				if(isLogin){
@@ -63,7 +59,6 @@ public class CameraController : MonoBehaviour {
 				}else{
 					Debug.Log(":( ):");
 				}
-
 			}
 		
 	}
@@ -73,7 +68,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	public void ZoomToInfo(){
-		CamAniController.SetBool ("InfoOpen", true);
+			CamAniController.SetBool ("InfoOpen", true);
 	}
 	public void ZoomToFriendList(){
 		CamAniController.SetBool ("friendListOpen", true);
@@ -87,11 +82,7 @@ public class CameraController : MonoBehaviour {
 	public void SlideToStore(){
 		CamAniController.SetBool ("storeOpen", true);
 	}
-	IEnumerator Example() {
-		Debug.Log (Time.time);
-		yield return new WaitForSeconds(2);
-		Debug.Log (Time.time);
-	}
+
 
 	/*
 		public void ZoomoutToFull(){
