@@ -4,14 +4,59 @@ using System.Collections;
 public class AlertController : MonoBehaviour {
 
 	public bool isChooseOpen = false;
-	// Use this for initialization
-	void Start () {
-	
+
+	public void alertLogin(){
+		foreach (Transform child in transform)
+		if (child.name == "LoginView") {
+			child.gameObject.SetActive (true);
+			Animation a =  child.GetComponent<Animation>();
+			a.Play();
+			a["infoBoard"].speed = 3;
+			child.transform.GetChild(0).gameObject.SetActive(true);
+		} else {
+			child.gameObject.SetActive(false);
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void switchbetwenforgetPassword(){
+		GameObject loginpanel = transform.GetChild (0).gameObject;
+		if (loginpanel.activeSelf) {
+			if(loginpanel.transform.GetChild(0).gameObject.activeSelf){
+				loginpanel.transform.GetChild(0).gameObject.SetActive(false);
+				loginpanel.transform.GetChild(1).gameObject.SetActive(true);
+			}else{
+				loginpanel.transform.GetChild(0).gameObject.SetActive(true);
+				loginpanel.transform.GetChild(1).gameObject.SetActive(false);
+			}
+		} else {
+			Debug.Log("Login panel didn't open");
+		}
+	}
+	public void switchbetwenRegister(){
+		GameObject loginpanel = transform.GetChild (0).gameObject;
+		GameObject registerpanel = transform.GetChild (1).gameObject;
+		if (loginpanel.activeSelf) {
+			loginpanel.SetActive(false);
+			registerpanel.SetActive(true);
+			registerpanel.transform.GetChild(0).gameObject.SetActive(true);
+		} else {
+			loginpanel.SetActive(true);
+			registerpanel.SetActive(false);
+			loginpanel.transform.GetChild(0).gameObject.SetActive(true);
+			loginpanel.transform.GetChild(1).gameObject.SetActive(false);
+		}
+	}
+
+	public void toFillInfomation(){
+		GameObject registerpanel = transform.GetChild (1).gameObject;
+		if (registerpanel.activeSelf) {
+			if(registerpanel.transform.GetChild(0).gameObject.activeSelf){
+				registerpanel.transform.GetChild(0).gameObject.SetActive(false);
+				registerpanel.transform.GetChild(1).gameObject.SetActive(true);
+			}else{
+				Debug.Log("haven't register");
+			}
+		}
 	}
 
 	public void alertInfo(){
@@ -67,12 +112,14 @@ public class AlertController : MonoBehaviour {
 				child.gameObject.SetActive(false);
 			}
 		}
-
 	}
 
 	public void hideall() {
-		foreach (Transform child in transform)
-			child.gameObject.SetActive(false);
+		foreach (Transform child in transform) {
+			child.gameObject.SetActive (false);
+		}
 	}
+
+
 
 }

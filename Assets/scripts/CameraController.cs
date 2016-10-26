@@ -8,8 +8,9 @@ public class CameraController : MonoBehaviour {
 	public Camera MainMenucamera;
 	public GameObject FlexableCanvas;
 	public float secsToNext= 0.01f;
-
 	private bool isLogin = false;
+	private bool isRegister = false;
+	private bool isLoginViewAlerted = false;
 	private Animator CamAniController;
 	private bool isStarted = false;
 	private bool InfoOpen = false;
@@ -40,11 +41,18 @@ public class CameraController : MonoBehaviour {
 		isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
 
 		if(isStarted){
-			if(isLogin){
-				HideAlertIfClickedOutside(infopanelarea);
-				HideAlertIfClickedOutside(settingpanelarea);
-				HideAlertIfClickedOutside(friendpanelarea);
-				HideAlertIfClickedOutside(roompanelarea);
+			if(isLogin||isRegister){
+				if(InfoOpen){
+					HideAlertIfClickedOutside(infopanelarea);
+				}else if(settingOpen){
+					HideAlertIfClickedOutside(settingpanelarea);
+				}else if(friendListOpen){
+					HideAlertIfClickedOutside(friendpanelarea);
+				}else if(isChooseOpen){
+					HideAlertIfClickedOutside(roompanelarea);
+				}else{
+					Debug.Log("Noting opened");
+				}
 				/*
 				if (Input.GetMouseButtonDown(0)){
 					if(InfoOpen || friendListOpen || settingOpen || richlist || store || isChooseOpen ){
@@ -60,10 +68,10 @@ public class CameraController : MonoBehaviour {
 						 }
 					}
 				*/
-			}else{
+			}else if(!isLogin && !isLoginViewAlerted){
 				Invoke("ZoomToInfo",0);
-				FlexableCanvas.GetComponent<AlertController>().alertInfo();
-				isLogin = true;
+				FlexableCanvas.GetComponent<AlertController>().alertLogin();
+				isLoginViewAlerted = true;
 				Debug.Log("start the game but haven't login");					
 				}
 		}else{
@@ -101,13 +109,30 @@ public class CameraController : MonoBehaviour {
 			Input.mousePosition, 
 			Camera.main)) {
 			panel.SetActive(false);
-			panel.transform.parent.gameObject.SetActive(false);
-			CamAniController.SetBool ("InfoOpen", false);
-			CamAniController.SetBool ("friendListOpen", false);
-			CamAniController.SetBool ("settingListOpen", false);
-			FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
-			FlexableCanvas.GetComponent<AlertController>().hideall();
+			GameObject panelParent = panel.transform.parent.gameObject;
+			panelParent.SetActive(false);
+			if(panelParent.name == "InfoView"){
+				CamAniController.SetBool ("InfoOpen", false);
+			}else if(panelParent.name == "FriendListView"){
+				CamAniController.SetBool ("friendListOpen", false);
+			}else if(panelParent.name == "SettingView"){
+				CamAniController.SetBool ("settingListOpen", false);
+			}else if(panelParent.name == "ChooseRoomView"){
+				FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
+				FlexableCanvas.GetComponent<AlertController>().hideall();
+			}else{
+				Debug.Log("nothing opened");
+			}
 		}
 	}
-	
+	 
+	public void setisLogin(){
+		isLogin = true;
+		//放大相机至全局
+		CamAniController.SetBool ("InfoOpen", false);
+	}
+	public void setisRegister(){
+		isRegister = true;
+		CamAniController.SetBool ("InfoOpen", false);
+	}
 }
