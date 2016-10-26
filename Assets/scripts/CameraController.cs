@@ -19,11 +19,18 @@ public class CameraController : MonoBehaviour {
 	private bool store = false;
 	private bool isChooseOpen = false;
 
+
 	void Start () {	
 		CamAniController = GetComponent<Animator>();
 	}
 
 	void Update () {
+		GameObject loginpanel =  FlexableCanvas.transform.GetChild (0).gameObject;
+
+		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
+		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
+		GameObject friendpanelarea = FlexableCanvas.transform.GetChild (3).gameObject.transform.GetChild(0).gameObject;
+		GameObject roompanelarea = FlexableCanvas.transform.GetChild (5).gameObject.transform.GetChild(0).gameObject;
 		isStarted = CamAniController.GetBool ("isStarted");
 		InfoOpen = CamAniController.GetBool ("InfoOpen");
 		friendListOpen = CamAniController.GetBool ("friendListOpen");
@@ -31,8 +38,14 @@ public class CameraController : MonoBehaviour {
 		richlist = CamAniController.GetBool ("richListOpen");
 		store = CamAniController.GetBool("storeOpen");
 		isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
+
 		if(isStarted){
 			if(isLogin){
+				HideAlertIfClickedOutside(infopanelarea);
+				HideAlertIfClickedOutside(settingpanelarea);
+				HideAlertIfClickedOutside(friendpanelarea);
+				HideAlertIfClickedOutside(roompanelarea);
+				/*
 				if (Input.GetMouseButtonDown(0)){
 					if(InfoOpen || friendListOpen || settingOpen || richlist || store || isChooseOpen ){
 						CamAniController.SetBool ("InfoOpen", false);
@@ -46,6 +59,7 @@ public class CameraController : MonoBehaviour {
 						Debug.Log("nothing opend");
 						 }
 					}
+				*/
 			}else{
 				Invoke("ZoomToInfo",0);
 				FlexableCanvas.GetComponent<AlertController>().alertInfo();
@@ -78,6 +92,22 @@ public class CameraController : MonoBehaviour {
 	}
 	public void SlideToStore(){
 		CamAniController.SetBool ("storeOpen", true);
+	}
+
+	private void HideAlertIfClickedOutside(GameObject panel) {
+		if (Input.GetMouseButton(0) && panel.activeSelf && 
+		    !RectTransformUtility.RectangleContainsScreenPoint(
+			panel.GetComponent<RectTransform>(), 
+			Input.mousePosition, 
+			Camera.main)) {
+			panel.SetActive(false);
+			panel.transform.parent.gameObject.SetActive(false);
+			CamAniController.SetBool ("InfoOpen", false);
+			CamAniController.SetBool ("friendListOpen", false);
+			CamAniController.SetBool ("settingListOpen", false);
+			FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
+			FlexableCanvas.GetComponent<AlertController>().hideall();
+		}
 	}
 	
 }
