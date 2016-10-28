@@ -119,4 +119,8 @@ public class AlertController : MonoBehaviour {
 			child.gameObject.SetActive (false);
 		}
 	}
+
+	public void toPlayMode(){
+		Application.LoadLevel("table");
+	}
 }
