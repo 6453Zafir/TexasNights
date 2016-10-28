@@ -38,7 +38,6 @@ public class HelpViewController : MonoBehaviour {
 
 	public void backToMain(){
 		Application.LoadLevel ("menu");
-		Debug.Log ("level loaded");
 	}
 
 }
