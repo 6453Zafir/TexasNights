@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.ImageEffects;
 
 public class CameraController : MonoBehaviour {
 	public float greetingScreen = 85f;
 	public float fullScreen = 375f;
 	public float boardScreen = 237f;
-	public Camera MainMenucamera;
 	public GameObject FlexableCanvas;
 	public float secsToNext= 0.01f;
 	private bool isLogin = false;
@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Update () {
-		GameObject loginpanel =  FlexableCanvas.transform.GetChild (0).gameObject;
 
 		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
 		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
@@ -41,14 +40,20 @@ public class CameraController : MonoBehaviour {
 		isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
 
 		if(isStarted){
+			turnOnEffects();
 			if(isLogin||isRegister){
+				turnOffEffects();
 				if(InfoOpen){
+					turnOnEffects();
 					HideAlertIfClickedOutside(infopanelarea);
 				}else if(settingOpen){
+					turnOnEffects();
 					HideAlertIfClickedOutside(settingpanelarea);
 				}else if(friendListOpen){
+					turnOnEffects();
 					HideAlertIfClickedOutside(friendpanelarea);
 				}else if(isChooseOpen){
+					turnOnEffects();
 					HideAlertIfClickedOutside(roompanelarea);
 				}else{
 					Debug.Log("Noting opened");
@@ -102,6 +107,14 @@ public class CameraController : MonoBehaviour {
 		CamAniController.SetBool ("storeOpen", true);
 	}
 
+	public void RichListBackToMain(){
+		CamAniController.SetBool ("richListOpen", false);
+	}
+	public void StoreBackToMain(){
+		Debug.Log("backed!!!!!!!");
+		CamAniController.SetBool ("storeOpen", false);
+	}
+
 	private void HideAlertIfClickedOutside(GameObject panel) {
 		if (Input.GetMouseButton(0) && panel.activeSelf && 
 		    !RectTransformUtility.RectangleContainsScreenPoint(
@@ -113,13 +126,17 @@ public class CameraController : MonoBehaviour {
 			panelParent.SetActive(false);
 			if(panelParent.name == "InfoView"){
 				CamAniController.SetBool ("InfoOpen", false);
+				turnOffEffects();
 			}else if(panelParent.name == "FriendListView"){
 				CamAniController.SetBool ("friendListOpen", false);
+				turnOffEffects();
 			}else if(panelParent.name == "SettingView"){
 				CamAniController.SetBool ("settingListOpen", false);
+				turnOffEffects();
 			}else if(panelParent.name == "ChooseRoomView"){
 				FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
 				FlexableCanvas.GetComponent<AlertController>().hideall();
+				turnOffEffects();
 			}else{
 				Debug.Log("nothing opened");
 			}
@@ -134,5 +151,14 @@ public class CameraController : MonoBehaviour {
 	public void setisRegister(){
 		isRegister = true;
 		CamAniController.SetBool ("InfoOpen", false);
+	}
+
+	public void turnOnEffects(){
+		GetComponent<Blur>().enabled = true;
+		GetComponent<VignetteAndChromaticAberration>().enabled = true;
+	}
+	public void turnOffEffects(){
+		GetComponent<Blur>().enabled = false;
+		GetComponent<VignetteAndChromaticAberration>().enabled = false;
 	}
 }

@@ -119,7 +119,4 @@ public class AlertController : MonoBehaviour {
 			child.gameObject.SetActive (false);
 		}
 	}
-
-
-
 }
