@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\AlertController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\HelpViewController.cs">
     <Files>
-      <File FileName="Assets\scripts\CameraController.cs" Line="144" Column="3" />
-      <File FileName="Assets\scripts\AlertController.cs" Line="7" Column="2" />
+      <File FileName="Assets\scripts\HelpViewController.cs" Line="40" Column="34" />
+      <File FileName="Assets\scripts\CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\AlertController.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\HelpViewController.cs" Line="41" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
