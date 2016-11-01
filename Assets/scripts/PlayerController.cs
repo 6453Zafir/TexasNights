@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 		GameObject player1 = Instantiate(Resources.Load("Player")) as GameObject;  // instatiate the object
 		player1.transform.parent = Playerl1;
 		player1.transform.localPosition = new Vector3 (-20, 0, 0);
-		player1.transform.localScale = new Vector3(1f, 1f, 1f);
+		player1.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 		
 		GameObject player2 = Instantiate(Resources.Load("Player")) as GameObject;  // instatiate the object
 		player2.transform.parent = Player12;
