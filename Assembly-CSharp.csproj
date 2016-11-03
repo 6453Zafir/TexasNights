@@ -48,6 +48,7 @@
      <Compile Include="Assets\scripts\AlertController.cs" />
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\HelpViewController.cs" />
+     <Compile Include="Assets\scripts\PlayController.cs" />
      <Compile Include="Assets\scripts\PlayerController.cs" />
      <Compile Include="Assets\scripts\TableController.cs" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
