@@ -5,15 +5,20 @@ public class PlayerController : MonoBehaviour {
 	const int playerNum = 6;
 	private Transform[] Players = new Transform[playerNum];
 	private GameObject[] player = new GameObject[playerNum];
-
+	private GameObject[] playerPoker = new GameObject[playerNum]; 
 	// Use this for initialization
 	void Start () {	
 		for (int i = 0; i<	gameObject.transform.childCount; i++) {
 			Players[i] = gameObject.transform.GetChild(i).transform;
+
 			player[i] = Instantiate(Resources.Load("Player")) as GameObject; 
 			player[i].transform.parent = Players[i];
 			player[i].transform.localPosition = new Vector3 (-20, 0, 0);
 			//player[i].transform.localScale = new Vector3(1f, 1f, 1f);
+
+			playerPoker[i] = Instantiate(Resources.Load("PokerBack"))as GameObject;
+			playerPoker[i].transform.parent = Players[i];
+			playerPoker[i].transform.localPosition = new Vector3 (50,-20,0);
 		}
 	}
 	
@@ -21,4 +26,5 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		
 	}
+	
 }

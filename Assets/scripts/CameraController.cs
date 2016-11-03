@@ -6,12 +6,12 @@ public class CameraController : MonoBehaviour {
 	public float greetingScreen = 85f;
 	public float fullScreen = 375f;
 	public float boardScreen = 237f;
-	public GameObject FlexableCanvas;
 	public float secsToNext= 0.01f;
+	public GameObject FlexableCanvas;
+
 	private bool isLogin = false;
 	private bool isRegister = false;
 	private bool isLoginViewAlerted = false;
-	private Animator CamAniController;
 	private bool isStarted = false;
 	private bool InfoOpen = false;
 	private bool friendListOpen = false;
@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour {
 	private bool richlist = false; 
 	private bool store = false;
 	private bool isChooseOpen = false;
+	private Animator CamAniController;
 
 
 	void Start () {	
@@ -28,8 +29,8 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 
 		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
-		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
 		GameObject friendpanelarea = FlexableCanvas.transform.GetChild (3).gameObject.transform.GetChild(0).gameObject;
+		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
 		GameObject roompanelarea = FlexableCanvas.transform.GetChild (5).gameObject.transform.GetChild(0).gameObject;
 		isStarted = CamAniController.GetBool ("isStarted");
 		InfoOpen = CamAniController.GetBool ("InfoOpen");
@@ -58,21 +59,6 @@ public class CameraController : MonoBehaviour {
 				}else{
 					Debug.Log("Noting opened");
 				}
-				/*
-				if (Input.GetMouseButtonDown(0)){
-					if(InfoOpen || friendListOpen || settingOpen || richlist || store || isChooseOpen ){
-						CamAniController.SetBool ("InfoOpen", false);
-						CamAniController.SetBool ("friendListOpen", false);
-						CamAniController.SetBool ("settingListOpen", false);
-						CamAniController.SetBool ("richListOpen", false);
-						CamAniController.SetBool ("storeOpen", false);
-						FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
-						FlexableCanvas.GetComponent<AlertController>().hideall();
-					}else{
-						Debug.Log("nothing opend");
-						 }
-					}
-				*/
 			}else if(!isLogin && !isLoginViewAlerted){
 				Invoke("ZoomToInfo",0);
 				FlexableCanvas.GetComponent<AlertController>().alertLogin();
