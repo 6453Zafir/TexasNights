@@ -48,21 +48,15 @@ public class PlayController : MonoBehaviour {
 
 	public void deal(){
 		for (int i = 0; i < Players.Length; i++) {
-			Debug.Log(i);
 			if(i==3){
-				Debug.Log("playerrrrrrrrrs");
 				playerPoker [i] = Instantiate (Resources.Load ("PokerFront"))as GameObject;
-				//playerPoker [i].transform.SetParent(Players[i],false);
-				playerPoker [i].transform.parent = Players [i];
+				playerPoker [i].transform.SetParent(Players[i],false);
 				playerPoker [i].transform.localPosition = new Vector3 (70, 20, 0);
 			}else{
 				playerPoker [i] = Instantiate (Resources.Load ("PokerBack"))as GameObject;
 				playerPoker[i].transform.SetParent(Players[i],false);
-				//playerPoker [i].transform.parent = Players [i];
 				playerPoker [i].transform.localPosition = new Vector3 (50, -20, 0);
 			}
-
-
 		}
 		return;
 	}
