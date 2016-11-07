@@ -28,42 +28,42 @@ public class turnTheTimer : MonoBehaviour {
 				cooldownMask.fillAmount = 0.832f;
 				isTimerJumped = false;
 			}
-			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/100 * Time.deltaTime;
 			break;
 		case 1:		
 			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.915f;
 				isTimerJumped = false;
 			}
-			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/110* Time.deltaTime;
 			break;
 		case 2:
 			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.999f;
 				isTimerJumped = false;
 			}
-			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		case 3:
 			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.087f;
 				isTimerJumped = false;
 			}
-			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/110 * Time.deltaTime;
 			break;
 		case 4:
 			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.167f;
 				isTimerJumped = false;
 			}
-			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		case 5:
 			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.251f;
 				isTimerJumped = false;
 			}
-			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/130 * Time.deltaTime;
 			break;
 		default:
 			Debug.Log("something is wrong!!!");

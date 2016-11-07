@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\turnTheTimer.cs">
     <Files>
-      <File FileName="Assets\scripts\Timer.cs" Line="11" Column="32" />
-      <File FileName="Assets\scripts\turnTheTimer.cs" Line="33" Column="36" />
+      <File FileName="Assets\scripts\Timer.cs" Line="22" Column="27" />
+      <File FileName="Assets\scripts\turnTheTimer.cs" Line="76" Column="52" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
