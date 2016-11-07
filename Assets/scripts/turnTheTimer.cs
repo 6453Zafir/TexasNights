@@ -4,11 +4,11 @@ using System.Collections;
 public class turnTheTimer : MonoBehaviour {
 	Vector3 spawnPosition;
 	Vector3 spawnRotaion;
-	Vector2 anchor;
+//	Vector2 anchor;
 	// Use this for initialization
 	void Start () {
 		spawnPosition = new Vector3(0f,408f,0); //if you want to always spwan in the middle
-		anchor = new Vector2 (0f, 410.2f);
+//		anchor = new Vector2 (0f, 410.2f);
 		InvokeRepeating("ChangePosition", 0, 1); 
 	}
 	

@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 	const int playerNum = 6;
 	private Transform[] Players = new Transform[playerNum];
 	private GameObject[] player = new GameObject[playerNum];
-	private GameObject[] playerPoker = new GameObject[playerNum]; 
+//	private GameObject[] playerPoker = new GameObject[playerNum]; 
 	// Use this for initialization
 	void Start () {	
 		for (int i = 0; i<	gameObject.transform.childCount; i++) {
