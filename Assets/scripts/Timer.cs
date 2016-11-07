@@ -7,9 +7,11 @@ public class Timer : MonoBehaviour {
 	public float timeLimit = 10;
 	public bool isTimeAdded = false;
 	public Button addtimeButton;
+	public int currentPlayer;
 	// Use this for initialization
 	void Start () {
 		timerText = GetComponent<Text> ();
+		currentPlayer = 0;  
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,11 @@ public class Timer : MonoBehaviour {
 			isTimeAdded = false;
 			addtimeButton.interactable = true;
 			timerText.color = new Color(1,1,1);
+			if(currentPlayer<6){
+				currentPlayer++;
+			}else{
+				currentPlayer = 0;
+			}
 		}
 	}
 
@@ -35,15 +42,11 @@ public class Timer : MonoBehaviour {
 			isTimeAdded = true;
 			addtimeButton.interactable = false;
 			timerText.color = new Color(0.906f,0.804f,0.125f);
-			timerText.fontSize = 100;
-
+			timerText.fontSize = 90;
 
 		} else {
 			Debug.Log("there is only one chance to add time");
 		}
 	}
 
-	IEnumerator waitASecond() {
-		yield return new WaitForSeconds(1);
-	}
 }

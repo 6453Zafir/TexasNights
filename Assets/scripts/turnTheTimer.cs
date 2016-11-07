@@ -1,30 +1,80 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class turnTheTimer : MonoBehaviour {
+	public GameObject theTurningBar;
+	public GameObject TimerText;
+	public Image cooldownMask;
+	public float waitTime = 10.0f;
+	public int currentPlayer;
 	Vector3 spawnPosition;
 	Vector3 spawnRotaion;
-//	Vector2 anchor;
+	private bool isTimerJumped = false;
 	// Use this for initialization
 	void Start () {
 		spawnPosition = new Vector3(0f,408f,0); //if you want to always spwan in the middle
-//		anchor = new Vector2 (0f, 410.2f);
-		InvokeRepeating("ChangePosition", 0, 1); 
+		InvokeRepeating("ChangePosition", 0, 10); 
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		currentPlayer = TimerText.GetComponent<Timer> ().currentPlayer;
 	
-	}
-	private void ChangePosition(){
-		transform.position = spawnPosition;
-		Debug.Log (transform.eulerAngles.z);
-		if (transform.eulerAngles.z > 60 &&transform.eulerAngles.z <210) {
-			transform.Rotate(0,0,210);
-		}else{
-			transform.Rotate (0, 0, 30);
+		switch (currentPlayer) {
+		case 0:
+			if(!isTimerJumped){
+				cooldownMask.fillAmount = 0.832f;
+				isTimerJumped = true;
+			}
+			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			break;
+		case 1:		
+			if(!isTimerJumped){
+				cooldownMask.fillAmount = 0.915f;
+				isTimerJumped = true;
+			}
+			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			break;
+		case 2:
+			if(!isTimerJumped){
+				cooldownMask.fillAmount = 0.999f;
+				isTimerJumped = true;
+			}
+			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			break;
+		case 3:
+			if(!isTimerJumped){
+				cooldownMask.fillAmount = 0.087f;
+				isTimerJumped = true;
+			}
+			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			break;
+		case 4:
+			if(!isTimerJumped){
+				cooldownMask.fillAmount = 0.167f;
+				isTimerJumped = true;
+			}
+			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			break;
+		case 5:
+			cooldownMask.fillAmount = 0.251f;
+			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
+			break;
+		default:
+			Debug.Log("something is wrong!!!");
+			break;
 		}
 
-		//spawnPosition = new Vector3 (Random.Range(-5,5), Random.Range(-5,5), Random.Range(-5,5));
+	}
+
+	public void ChangePosition(){
+		theTurningBar.transform.position = spawnPosition;
+		if (theTurningBar.transform.eulerAngles.z > 60 &&theTurningBar.transform.eulerAngles.z <210) {
+			theTurningBar.transform.Rotate(0,0,210);
+		}else{
+			theTurningBar.transform.Rotate (0, 0, 30);
+		}
 	}
 }
