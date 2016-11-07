@@ -21,45 +21,48 @@ public class turnTheTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		currentPlayer = TimerText.GetComponent<Timer> ().currentPlayer;
-	
+		isTimerJumped = TimerText.GetComponent<Timer> ().isTimerSwitched;
 		switch (currentPlayer) {
 		case 0:
-			if(!isTimerJumped){
+			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.832f;
-				isTimerJumped = true;
+				isTimerJumped = false;
 			}
 			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
 			break;
 		case 1:		
-			if(!isTimerJumped){
+			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.915f;
-				isTimerJumped = true;
+				isTimerJumped = false;
 			}
 			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
 			break;
 		case 2:
-			if(!isTimerJumped){
+			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.999f;
-				isTimerJumped = true;
+				isTimerJumped = false;
 			}
 			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
 			break;
 		case 3:
-			if(!isTimerJumped){
+			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.087f;
-				isTimerJumped = true;
+				isTimerJumped = false;
 			}
 			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
 			break;
 		case 4:
-			if(!isTimerJumped){
+			if(isTimerJumped){
 				cooldownMask.fillAmount = 0.167f;
-				isTimerJumped = true;
+				isTimerJumped = false;
 			}
 			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
 			break;
 		case 5:
-			cooldownMask.fillAmount = 0.251f;
+			if(isTimerJumped){
+				cooldownMask.fillAmount = 0.251f;
+				isTimerJumped = false;
+			}
 			cooldownMask.fillAmount -= 1.0f/waitTime * Time.deltaTime;
 			break;
 		default:

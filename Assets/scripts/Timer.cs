@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour {
 	public bool isTimeAdded = false;
 	public Button addtimeButton;
 	public int currentPlayer;
+	public bool isTimerSwitched = false;
 	// Use this for initialization
 	void Start () {
 		timerText = GetComponent<Text> ();
@@ -18,6 +19,7 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		if (timeLimit >= 0) {
 			timeLimit -= Time.deltaTime;
+			isTimerSwitched = false;
 			timerText.text = timeLimit.ToString ("f1");
 			if(timeLimit < 5){
 				timerText.color = new Color(0.882f,0.447f,0.365f);
@@ -28,6 +30,7 @@ public class Timer : MonoBehaviour {
 			isTimeAdded = false;
 			addtimeButton.interactable = true;
 			timerText.color = new Color(1,1,1);
+			isTimerSwitched = true;
 			if(currentPlayer<6){
 				currentPlayer++;
 			}else{
