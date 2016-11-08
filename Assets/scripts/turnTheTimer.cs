@@ -21,7 +21,6 @@ public class turnTheTimer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (timeLimit >= 0) {
 			timeLimit -= Time.deltaTime;
 			isTimerSwitched = false;
@@ -105,5 +104,9 @@ public class turnTheTimer : MonoBehaviour {
 		} else {
 			Debug.Log("there is only one chance to add time");
 		}
+	}
+
+	public void switchToNext(){
+		timeLimit = 0;
 	}
 }
