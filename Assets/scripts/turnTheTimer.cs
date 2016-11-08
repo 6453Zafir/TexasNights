@@ -49,54 +49,61 @@ public class turnTheTimer : MonoBehaviour {
 				theTurningBar.transform.position = spawnPosition;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,270);
 			}
-			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
+			cooldownMask.fillAmount = 0.747f + 0.085f*timeLimit/10;
 			break;
 		case 1:		
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.915f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,300);
 			}
-			cooldownMask.fillAmount -= 1.0f/120* Time.deltaTime;
+			cooldownMask.fillAmount = 0.832f + 0.085f*timeLimit/10;
 			break;
 		case 2:
 			if(isTimerSwitched){
-				cooldownMask.fillAmount = 0.999f;
+				cooldownMask.fillAmount = 1f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,330);
 			}
-			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
+			cooldownMask.fillAmount = 0.915f + 0.085f*timeLimit/10;
 			break;
 		case 3:
 			if(isTimerSwitched){
-				cooldownMask.fillAmount = 0.087f;
+				cooldownMask.fillAmount = 0.085f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,0);
 			}
-			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
+			cooldownMask.fillAmount = 0 + 0.085f*timeLimit/10;
 			break;
 		case 4:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.167f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,30);
 			}
-			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
+			cooldownMask.fillAmount = 0.085f + 0.085f*timeLimit/10;
 			break;
 		case 5:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.251f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,60);
 			}
-			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
+			cooldownMask.fillAmount = 0.167f + 0.085f*timeLimit/10;
 			break;
 		default:
 			Debug.Log("the player num is worng");
 			break;
 		}
-
 	}
 
 	public void addTime(){
 		if (isTimeAdded == false) {
 			timeLimit += 5;
-			cooldownMask.fillAmount += 0.045f;
+			if(currentPlayer == 2){
+				if(cooldownMask.fillAmount < 0.9575){
+					cooldownMask.fillAmount += 0.045f;
+				}else{
+					cooldownMask.fillAmount = 0.915f + 0.085f*timeLimit/10;
+				}
+			}else{
+				cooldownMask.fillAmount += 0.045f;
+			}
 			isTimeAdded = true;
 			addtimeButton.interactable = false;
 			timerText.color = new Color(0.906f,0.804f,0.125f);
