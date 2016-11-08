@@ -12,13 +12,11 @@ public class turnTheTimer : MonoBehaviour {
 	public bool isTimeAdded = false;
 	public bool isTimerSwitched = false;
 	Vector3 spawnPosition;
-	Vector3 spawnRotaion;
 	// Use this for initialization
 
 	void Start () {
 		currentPlayer = 0;  
 		spawnPosition = new Vector3(0f,408f,0);
-		//InvokeRepeating("ChangePosition", 0, 10); 
 	}
 	
 	// Update is called once per frame
@@ -52,14 +50,14 @@ public class turnTheTimer : MonoBehaviour {
 				theTurningBar.transform.position = spawnPosition;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,270);
 			}
-			cooldownMask.fillAmount -= 1.0f/100 * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		case 1:		
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.915f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,300);
 			}
-			cooldownMask.fillAmount -= 1.0f/110* Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/120* Time.deltaTime;
 			break;
 		case 2:
 			if(isTimerSwitched){
@@ -73,7 +71,7 @@ public class turnTheTimer : MonoBehaviour {
 				cooldownMask.fillAmount = 0.087f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,0);
 			}
-			cooldownMask.fillAmount -= 1.0f/110 * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		case 4:
 			if(isTimerSwitched){
@@ -87,7 +85,7 @@ public class turnTheTimer : MonoBehaviour {
 				cooldownMask.fillAmount = 0.251f;
 				theTurningBar.transform.eulerAngles = new Vector3(0,0,60);
 			}
-			cooldownMask.fillAmount -= 1.0f/130 * Time.deltaTime;
+			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		default:
 			Debug.Log("the player num is worng");
@@ -95,20 +93,11 @@ public class turnTheTimer : MonoBehaviour {
 		}
 
 	}
-	/*
-	public void ChangePosition(){
-		theTurningBar.transform.position = spawnPosition;
-		if (theTurningBar.transform.eulerAngles.z > 30 &&theTurningBar.transform.eulerAngles.z <210) {
-			theTurningBar.transform.Rotate(0,0,210);
-		}else{
-			print(theTurningBar.transform.eulerAngles.z);
-			theTurningBar.transform.Rotate (0, 0, 30);
-		}
-	}*/
 
 	public void addTime(){
 		if (isTimeAdded == false) {
 			timeLimit += 5;
+			cooldownMask.fillAmount += 0.045f;
 			isTimeAdded = true;
 			addtimeButton.interactable = false;
 			timerText.color = new Color(0.906f,0.804f,0.125f);
