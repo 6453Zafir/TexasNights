@@ -9,17 +9,16 @@ public class turnTheTimer : MonoBehaviour {
 	public Image cooldownMask;
 	public float timeLimit = 10;
 	public int currentPlayer;
-
 	public bool isTimeAdded = false;
 	public bool isTimerSwitched = false;
-
 	Vector3 spawnPosition;
 	Vector3 spawnRotaion;
 	// Use this for initialization
+
 	void Start () {
 		currentPlayer = 0;  
 		spawnPosition = new Vector3(0f,408f,0);
-		InvokeRepeating("ChangePosition", 0, 10); 
+		//InvokeRepeating("ChangePosition", 0, 10); 
 	}
 	
 	// Update is called once per frame
@@ -45,48 +44,48 @@ public class turnTheTimer : MonoBehaviour {
 			isTimeAdded = false;
 			isTimerSwitched = true;
 		}
-		print ("currentPalyer"+currentPlayer);
-		print ("isswitching "+isTimerSwitched);
+
 		switch (currentPlayer) {
 		case 0:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.832f;
-				//isTimerSwitched = false;
+				theTurningBar.transform.position = spawnPosition;
+				theTurningBar.transform.eulerAngles = new Vector3(0,0,270);
 			}
 			cooldownMask.fillAmount -= 1.0f/100 * Time.deltaTime;
 			break;
 		case 1:		
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.915f;
-				isTimerSwitched = false;
+				theTurningBar.transform.eulerAngles = new Vector3(0,0,300);
 			}
 			cooldownMask.fillAmount -= 1.0f/110* Time.deltaTime;
 			break;
 		case 2:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.999f;
-				isTimerSwitched = false;
+				theTurningBar.transform.eulerAngles = new Vector3(0,0,330);
 			}
 			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		case 3:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.087f;
-				isTimerSwitched = false;
+				theTurningBar.transform.eulerAngles = new Vector3(0,0,0);
 			}
 			cooldownMask.fillAmount -= 1.0f/110 * Time.deltaTime;
 			break;
 		case 4:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.167f;
-				isTimerSwitched = false;
+				theTurningBar.transform.eulerAngles = new Vector3(0,0,30);
 			}
 			cooldownMask.fillAmount -= 1.0f/120 * Time.deltaTime;
 			break;
 		case 5:
 			if(isTimerSwitched){
 				cooldownMask.fillAmount = 0.251f;
-				isTimerSwitched = false;
+				theTurningBar.transform.eulerAngles = new Vector3(0,0,60);
 			}
 			cooldownMask.fillAmount -= 1.0f/130 * Time.deltaTime;
 			break;
@@ -96,7 +95,7 @@ public class turnTheTimer : MonoBehaviour {
 		}
 
 	}
-
+	/*
 	public void ChangePosition(){
 		theTurningBar.transform.position = spawnPosition;
 		if (theTurningBar.transform.eulerAngles.z > 30 &&theTurningBar.transform.eulerAngles.z <210) {
@@ -105,7 +104,7 @@ public class turnTheTimer : MonoBehaviour {
 			print(theTurningBar.transform.eulerAngles.z);
 			theTurningBar.transform.Rotate (0, 0, 30);
 		}
-	}
+	}*/
 
 	public void addTime(){
 		if (isTimeAdded == false) {
