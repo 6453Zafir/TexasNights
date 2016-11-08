@@ -22,6 +22,8 @@ public class turnTheTimer : MonoBehaviour {
 	void Update () {
 		currentPlayer = TimerText.GetComponent<Timer> ().currentPlayer;
 		isTimerJumped = TimerText.GetComponent<Timer> ().isTimerSwitched;
+		print ("currentPalyer"+currentPlayer);
+		print ("isswitching "+isTimerJumped);
 		switch (currentPlayer) {
 		case 0:
 			if(isTimerJumped){
@@ -66,7 +68,7 @@ public class turnTheTimer : MonoBehaviour {
 			cooldownMask.fillAmount -= 1.0f/130 * Time.deltaTime;
 			break;
 		default:
-			Debug.Log("something is wrong!!!");
+			Debug.Log("the player num is worng");
 			break;
 		}
 
@@ -74,9 +76,10 @@ public class turnTheTimer : MonoBehaviour {
 
 	public void ChangePosition(){
 		theTurningBar.transform.position = spawnPosition;
-		if (theTurningBar.transform.eulerAngles.z > 60 &&theTurningBar.transform.eulerAngles.z <210) {
+		if (theTurningBar.transform.eulerAngles.z > 30 &&theTurningBar.transform.eulerAngles.z <210) {
 			theTurningBar.transform.Rotate(0,0,210);
 		}else{
+			print(theTurningBar.transform.eulerAngles.z);
 			theTurningBar.transform.Rotate (0, 0, 30);
 		}
 	}

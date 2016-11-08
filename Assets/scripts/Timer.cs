@@ -11,7 +11,6 @@ public class Timer : MonoBehaviour {
 	public bool isTimerSwitched = false;
 	// Use this for initialization
 	void Start () {
-		timerText = GetComponent<Text> ();
 		currentPlayer = 0;  
 	}
 	
@@ -31,7 +30,7 @@ public class Timer : MonoBehaviour {
 			addtimeButton.interactable = true;
 			timerText.color = new Color(1,1,1);
 			isTimerSwitched = true;
-			if(currentPlayer<6){
+			if(currentPlayer<5){
 				currentPlayer++;
 			}else{
 				currentPlayer = 0;
@@ -46,7 +45,6 @@ public class Timer : MonoBehaviour {
 			addtimeButton.interactable = false;
 			timerText.color = new Color(0.906f,0.804f,0.125f);
 			timerText.fontSize = 90;
-
 		} else {
 			Debug.Log("there is only one chance to add time");
 		}
