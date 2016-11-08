@@ -95,19 +95,11 @@ public class turnTheTimer : MonoBehaviour {
 	public void addTime(){
 		if (isTimeAdded == false) {
 			timeLimit += 5;
-			if(currentPlayer == 2){
-				if(cooldownMask.fillAmount < 0.9575){
-					cooldownMask.fillAmount += 0.045f;
-				}else{
-					cooldownMask.fillAmount = 0.915f + 0.085f*timeLimit/10;
-				}
-			}else{
-				cooldownMask.fillAmount += 0.045f;
-			}
+			cooldownMask.fillAmount +=0.045f;
 			isTimeAdded = true;
 			addtimeButton.interactable = false;
-			timerText.color = new Color(0.906f,0.804f,0.125f);
-			timerText.fontSize = 90;
+			timerText.color = new Color(0.906f,0.804f,0.125f);//turn the text to yellow to 
+			timerText.fontSize = 90;			         	  //indicate that the time has been added
 		} else {
 			Debug.Log("there is only one chance to add time");
 		}
