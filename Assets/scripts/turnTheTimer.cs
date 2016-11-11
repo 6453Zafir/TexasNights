@@ -26,7 +26,7 @@ public class turnTheTimer : MonoBehaviour {
 			isTimerSwitched = false;
 			timerText.text = timeLimit.ToString ("f1");
 			if(timeLimit < 5){
-				timerText.color = new Color(0.882f,0.447f,0.365f);
+				timerText.color = new Color(0.882f,0.447f,0.365f);//turn the timer color to red
 			}
 		} else {
 			Debug.Log("Time is over");
@@ -98,7 +98,7 @@ public class turnTheTimer : MonoBehaviour {
 			cooldownMask.fillAmount +=0.045f;
 			isTimeAdded = true;
 			addtimeButton.interactable = false;
-			timerText.color = new Color(0.906f,0.804f,0.125f);//turn the text to yellow to 
+			timerText.color = new Color(0.906f,0.804f,0.125f);//turn the text to yellow and larger to 
 			timerText.fontSize = 90;			         	  //indicate that the time has been added
 		} else {
 			Debug.Log("there is only one chance to add time");
