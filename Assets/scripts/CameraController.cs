@@ -3,70 +3,56 @@ using System.Collections;
 using UnityStandardAssets.ImageEffects;
 
 public class CameraController : MonoBehaviour {
-	public float greetingScreen = 85f;
-	public float fullScreen = 375f;
-	public float boardScreen = 237f;
-	public float secsToNext= 0.01f;
 	public GameObject FlexableCanvas;
-
-	private bool isLogin = false;
-	private bool isRegister = false;
-	private bool isLoginViewAlerted = false;
-	private bool isStarted = false;
-	private bool InfoOpen = false;
-	private bool friendListOpen = false;
-	private bool settingOpen = false;
-	private bool richlist = false; 
-	private bool store = false;
-	private bool isChooseOpen = false;
 	private Animator CamAniController;
-
 
 	void Start () {	
 		CamAniController = GetComponent<Animator>();
 	}
 
 	void Update () {
-
+		print ("singleton isStarted" + GameManager.instance.isStarted);
 		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
 		GameObject friendpanelarea = FlexableCanvas.transform.GetChild (3).gameObject.transform.GetChild(0).gameObject;
 		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
 		GameObject roompanelarea = FlexableCanvas.transform.GetChild (5).gameObject.transform.GetChild(0).gameObject;
-		isStarted = CamAniController.GetBool ("isStarted");
-		InfoOpen = CamAniController.GetBool ("InfoOpen");
-		friendListOpen = CamAniController.GetBool ("friendListOpen");
-		settingOpen = CamAniController.GetBool ("settingListOpen");
-		richlist = CamAniController.GetBool ("richListOpen");
-		store = CamAniController.GetBool("storeOpen");
-		isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
 
-		if(isStarted){
+		GameManager.instance.isStarted = CamAniController.GetBool ("isStarted");
+		GameManager.instance.InfoOpen = CamAniController.GetBool ("InfoOpen");
+		GameManager.instance.friendListOpen = CamAniController.GetBool ("friendListOpen");
+		GameManager.instance.settingOpen = CamAniController.GetBool ("settingListOpen");
+		GameManager.instance.richlist = CamAniController.GetBool ("richListOpen");
+		GameManager.instance.store = CamAniController.GetBool("storeOpen");
+		GameManager.instance.isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
+
+		if(GameManager.instance.isStarted){
 			turnOnEffects();
-			if(isLogin||isRegister){
+			print ("isStarted "+GameManager.instance.isStarted+"isRegister"+GameManager.instance.isRegister+"isLoginViewAlerted"+GameManager.instance.isRegister);
+			if(GameManager.instance.isLogin||GameManager.instance.isRegister){
 				turnOffEffects();
-				if(InfoOpen){
+				if(GameManager.instance.InfoOpen){
 					turnOnEffects();
 					HideAlertIfClickedOutside(infopanelarea);
-				}else if(settingOpen){
+				}else if(GameManager.instance.settingOpen){
 					turnOnEffects();
 					HideAlertIfClickedOutside(settingpanelarea);
-				}else if(friendListOpen){
+				}else if(GameManager.instance.friendListOpen){
 					turnOnEffects();
 					HideAlertIfClickedOutside(friendpanelarea);
-				}else if(isChooseOpen){
+				}else if(GameManager.instance.isChooseOpen){
 					turnOnEffects();
 					HideAlertIfClickedOutside(roompanelarea);
 				}else{
 					Debug.Log("Noting opened");
 				}
-			}else if(!isLogin && !isLoginViewAlerted){
+			}else if(!GameManager.instance.isLogin && !GameManager.instance.isLoginViewAlerted){
 				Invoke("ZoomToInfo",0);
 				FlexableCanvas.GetComponent<AlertController>().alertLogin();
-				isLoginViewAlerted = true;
+				GameManager.instance.isLoginViewAlerted = true;
 				Debug.Log("start the game but haven't login");					
 				}
 		}else{
-			if(isLogin){
+			if(GameManager.instance.isLogin){
 				Debug.Log("has login but somehow didn't able to start the game");
 			}else{
 				Debug.Log("have't start the game :(");
@@ -130,12 +116,11 @@ public class CameraController : MonoBehaviour {
 	}
 	 
 	public void setisLogin(){
-		isLogin = true;
-		//放大相机至全局
+		GameManager.instance.isLogin = true;
 		CamAniController.SetBool ("InfoOpen", false);
 	}
 	public void setisRegister(){
-		isRegister = true;
+		GameManager.instance.isRegister = true;
 		CamAniController.SetBool ("InfoOpen", false);
 	}
 
