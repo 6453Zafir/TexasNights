@@ -4,7 +4,6 @@ using System.Collections;
 public class AlertController : MonoBehaviour {
 
 	public bool isChooseOpen = false;
-
 	public void alertLogin(){
 		foreach (Transform child in transform)
 		if (child.name == "LoginView") {
@@ -122,5 +121,24 @@ public class AlertController : MonoBehaviour {
 
 	public void toPlayMode(){
 		Application.LoadLevel("table");
+	}
+
+	public void loginSubmit(){
+		string url = "http://localhost:8080/poker/api/user/login?username=123123&password=312312";
+		WWW www = new WWW(url);
+		StartCoroutine(WaitForRequest(www));
+	}
+
+	IEnumerator WaitForRequest(WWW www)
+	{
+		yield return www;
+		
+		// check for errors
+		if (www.error == null)
+		{
+			Debug.Log("WWW Ok!: " + www.data);
+		} else {
+			Debug.Log("WWW Error: "+ www.error);
+		}    
 	}
 }
