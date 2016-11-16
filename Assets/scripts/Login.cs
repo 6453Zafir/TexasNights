@@ -21,7 +21,8 @@ public class Login : MonoBehaviour {
 		loginPassword = PasswordInputField.text;
 	}
 	public void loginSubmit(){
-		string url = "http://localhost:8080/poker/api/user/login?username="+loginPhoneNum+"&password="+loginPassword;
+		string EncodedPassword = Md5Sum (loginPassword);
+		string url = "http://localhost:8080/poker/api/user/login?username="+loginPhoneNum+"&password="+ EncodedPassword;
 		WWW www = new WWW(url);
 		StartCoroutine(WaitForRequest(www));
 	}
@@ -50,5 +51,25 @@ public class Login : MonoBehaviour {
 			FlexiableView.GetComponent<AlertController>().hideall();
 			MainCamera.GetComponent<CameraController>().setisLogin();
 		}
+	}
+
+	public string Md5Sum(string password)
+	{
+		System.Text.UTF8Encoding ue = new System.Text.UTF8Encoding();
+		byte[] bytes = ue.GetBytes(password);
+		
+		// encrypt bytes
+		System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+		byte[] hashBytes = md5.ComputeHash(bytes);
+		
+		// Convert the encrypted bytes back to a string (base 16)
+		string hashString = "";
+		
+		for (int i = 0; i < hashBytes.Length; i++)
+		{
+			hashString += System.Convert.ToString(hashBytes[i], 16).PadLeft(2, '0');
+		}
+		
+		return hashString.PadLeft(32, '0');
 	}
 }

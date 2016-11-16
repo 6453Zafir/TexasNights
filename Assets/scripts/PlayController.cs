@@ -10,7 +10,6 @@ public class PlayController : MonoBehaviour {
 	private int currentPlayerNum = 1; 
 
 	private Animator PlayTimeAnimation;
-	//private bool allReady = false;
 	private bool isDealed = false;
 
 	// Use this for initialization
@@ -26,7 +25,6 @@ public class PlayController : MonoBehaviour {
 		//allReady = PlayTimeAnimation.GetBool("isStarted");
 
 		if (true) {
-			//如果6个玩家已集全（如何判断？？？）
 			PlayTimeAnimation.SetBool("isStarted",true);
 			if(!isDealed){
 				Invoke("deal",0);
@@ -50,6 +48,7 @@ public class PlayController : MonoBehaviour {
 		for (int i = 0; i < Players.Length; i++) {
 			if(i==3){
 				playerPoker [i] = Instantiate (Resources.Load ("PokerFront"))as GameObject;
+				//playerPoker[i].transform.GetChild(0).GetComponent<Image>()
 				playerPoker [i].transform.SetParent(Players[i],false);
 				playerPoker [i].transform.localPosition = new Vector3 (70, 20, 0);
 			}else{
