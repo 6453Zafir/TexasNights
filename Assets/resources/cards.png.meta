@@ -1,61 +1,61 @@
 fileFormatVersion: 2
 guid: 08d9e701c93a7b5419c73b1dfc77d11e
-timeCreated: 1476956118
+timeCreated: 1479265259
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cards_0
-    21300002: cards_1
-    21300004: cards_2
-    21300006: cards_3
-    21300008: cards_4
-    21300010: cards_5
-    21300012: cards_6
-    21300014: cards_7
-    21300016: cards_8
-    21300018: cards_9
-    21300020: cards_10
-    21300022: cards_11
-    21300024: cards_12
-    21300026: cards_13
-    21300028: cards_14
-    21300030: cards_15
-    21300032: cards_16
-    21300034: cards_17
-    21300036: cards_18
-    21300038: cards_19
-    21300040: cards_20
-    21300042: cards_21
-    21300044: cards_22
-    21300046: cards_23
-    21300048: cards_24
-    21300050: cards_25
-    21300052: cards_26
-    21300054: cards_27
-    21300056: cards_28
-    21300058: cards_29
-    21300060: cards_30
-    21300062: cards_31
-    21300064: cards_32
-    21300066: cards_33
-    21300068: cards_34
-    21300070: cards_35
-    21300072: cards_36
-    21300074: cards_37
-    21300076: cards_38
-    21300078: cards_39
-    21300080: cards_40
-    21300082: cards_41
-    21300084: cards_42
-    21300086: cards_43
-    21300088: cards_44
-    21300090: cards_45
-    21300092: cards_46
-    21300094: cards_47
-    21300096: cards_48
-    21300098: cards_49
-    21300100: cards_50
-    21300102: cards_51
+    21300000: 52
+    21300002: 26
+    21300004: 39
+    21300006: 13
+    21300008: 1
+    21300010: 40
+    21300012: 27
+    21300014: 14
+    21300016: 51
+    21300018: 38
+    21300020: 25
+    21300022: 12
+    21300024: 36
+    21300026: 10
+    21300028: 23
+    21300030: 49
+    21300032: 11
+    21300034: 37
+    21300036: 24
+    21300038: 50
+    21300040: 35
+    21300042: 9
+    21300044: 22
+    21300046: 48
+    21300048: 8
+    21300050: 21
+    21300052: 34
+    21300054: 47
+    21300056: 33
+    21300058: 7
+    21300060: 20
+    21300062: 46
+    21300064: 45
+    21300066: 32
+    21300068: 6
+    21300070: 19
+    21300072: 44
+    21300074: 31
+    21300076: 5
+    21300078: 18
+    21300080: 30
+    21300082: 4
+    21300084: 17
+    21300086: 43
+    21300088: 29
+    21300090: 3
+    21300092: 42
+    21300094: 16
+    21300096: 28
+    21300098: 2
+    21300100: 15
+    21300102: 41
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -102,7 +102,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: cards_0
+    - name: 52
       rect:
         serializedVersion: 2
         x: 20
@@ -110,9 +110,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_1
+    - name: 26
       rect:
         serializedVersion: 2
         x: 491
@@ -120,9 +120,9 @@ TextureImporter:
         width: 442
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_2
+    - name: 39
       rect:
         serializedVersion: 2
         x: 959
@@ -130,9 +130,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_3
+    - name: 13
       rect:
         serializedVersion: 2
         x: 1430
@@ -140,9 +140,9 @@ TextureImporter:
         width: 442
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_4
+    - name: 1
       rect:
         serializedVersion: 2
         x: 1929
@@ -150,9 +150,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_5
+    - name: 40
       rect:
         serializedVersion: 2
         x: 2395
@@ -160,9 +160,9 @@ TextureImporter:
         width: 442
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_6
+    - name: 27
       rect:
         serializedVersion: 2
         x: 2859
@@ -170,9 +170,9 @@ TextureImporter:
         width: 444
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_7
+    - name: 14
       rect:
         serializedVersion: 2
         x: 3325
@@ -180,9 +180,9 @@ TextureImporter:
         width: 444
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_8
+    - name: 51
       rect:
         serializedVersion: 2
         x: 20
@@ -190,9 +190,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_9
+    - name: 38
       rect:
         serializedVersion: 2
         x: 491
@@ -200,9 +200,9 @@ TextureImporter:
         width: 442
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_10
+    - name: 25
       rect:
         serializedVersion: 2
         x: 959
@@ -210,9 +210,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_11
+    - name: 12
       rect:
         serializedVersion: 2
         x: 1428
@@ -220,9 +220,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_12
+    - name: 36
       rect:
         serializedVersion: 2
         x: 1927
@@ -230,9 +230,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_13
+    - name: 10
       rect:
         serializedVersion: 2
         x: 2395
@@ -240,9 +240,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_14
+    - name: 23
       rect:
         serializedVersion: 2
         x: 2864
@@ -250,9 +250,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_15
+    - name: 49
       rect:
         serializedVersion: 2
         x: 3332
@@ -260,9 +260,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_16
+    - name: 11
       rect:
         serializedVersion: 2
         x: 20
@@ -270,9 +270,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_17
+    - name: 37
       rect:
         serializedVersion: 2
         x: 489
@@ -280,9 +280,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_18
+    - name: 24
       rect:
         serializedVersion: 2
         x: 955
@@ -290,9 +290,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_19
+    - name: 50
       rect:
         serializedVersion: 2
         x: 1423
@@ -300,9 +300,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_20
+    - name: 35
       rect:
         serializedVersion: 2
         x: 1925
@@ -310,9 +310,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_21
+    - name: 9
       rect:
         serializedVersion: 2
         x: 2393
@@ -320,9 +320,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_22
+    - name: 22
       rect:
         serializedVersion: 2
         x: 2859
@@ -330,9 +330,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_23
+    - name: 48
       rect:
         serializedVersion: 2
         x: 3327
@@ -340,9 +340,9 @@ TextureImporter:
         width: 442
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_24
+    - name: 8
       rect:
         serializedVersion: 2
         x: 20
@@ -350,9 +350,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_25
+    - name: 21
       rect:
         serializedVersion: 2
         x: 493
@@ -360,9 +360,9 @@ TextureImporter:
         width: 445
         height: 672
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_26
+    - name: 34
       rect:
         serializedVersion: 2
         x: 966
@@ -370,9 +370,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_27
+    - name: 47
       rect:
         serializedVersion: 2
         x: 1440
@@ -380,9 +380,9 @@ TextureImporter:
         width: 442
         height: 672
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_28
+    - name: 33
       rect:
         serializedVersion: 2
         x: 1922
@@ -390,9 +390,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_29
+    - name: 7
       rect:
         serializedVersion: 2
         x: 2388
@@ -400,9 +400,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_30
+    - name: 20
       rect:
         serializedVersion: 2
         x: 2856
@@ -410,9 +410,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_31
+    - name: 46
       rect:
         serializedVersion: 2
         x: 3322
@@ -420,9 +420,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_32
+    - name: 45
       rect:
         serializedVersion: 2
         x: 20
@@ -430,9 +430,9 @@ TextureImporter:
         width: 445
         height: 671
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_33
+    - name: 32
       rect:
         serializedVersion: 2
         x: 493
@@ -440,9 +440,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_34
+    - name: 6
       rect:
         serializedVersion: 2
         x: 966
@@ -450,9 +450,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_35
+    - name: 19
       rect:
         serializedVersion: 2
         x: 1440
@@ -460,9 +460,9 @@ TextureImporter:
         width: 442
         height: 671
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_36
+    - name: 44
       rect:
         serializedVersion: 2
         x: 1925
@@ -470,9 +470,9 @@ TextureImporter:
         width: 442
         height: 671
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_37
+    - name: 31
       rect:
         serializedVersion: 2
         x: 2388
@@ -480,9 +480,9 @@ TextureImporter:
         width: 445
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_38
+    - name: 5
       rect:
         serializedVersion: 2
         x: 2854
@@ -490,9 +490,9 @@ TextureImporter:
         width: 444
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_39
+    - name: 18
       rect:
         serializedVersion: 2
         x: 3318
@@ -500,9 +500,9 @@ TextureImporter:
         width: 444
         height: 671
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_40
+    - name: 30
       rect:
         serializedVersion: 2
         x: 20
@@ -510,9 +510,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_41
+    - name: 4
       rect:
         serializedVersion: 2
         x: 493
@@ -520,9 +520,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_42
+    - name: 17
       rect:
         serializedVersion: 2
         x: 967
@@ -530,9 +530,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_43
+    - name: 43
       rect:
         serializedVersion: 2
         x: 1440
@@ -540,9 +540,9 @@ TextureImporter:
         width: 442
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_44
+    - name: 29
       rect:
         serializedVersion: 2
         x: 1922
@@ -550,9 +550,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_45
+    - name: 3
       rect:
         serializedVersion: 2
         x: 2383
@@ -560,9 +560,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_46
+    - name: 42
       rect:
         serializedVersion: 2
         x: 2847
@@ -570,9 +570,9 @@ TextureImporter:
         width: 442
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_47
+    - name: 16
       rect:
         serializedVersion: 2
         x: 3308
@@ -580,9 +580,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_48
+    - name: 28
       rect:
         serializedVersion: 2
         x: 20
@@ -590,9 +590,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_49
+    - name: 2
       rect:
         serializedVersion: 2
         x: 496
@@ -600,9 +600,9 @@ TextureImporter:
         width: 444
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_50
+    - name: 15
       rect:
         serializedVersion: 2
         x: 971
@@ -610,9 +610,9 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cards_51
+    - name: 41
       rect:
         serializedVersion: 2
         x: 1444
@@ -620,7 +620,7 @@ TextureImporter:
         width: 445
         height: 674
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

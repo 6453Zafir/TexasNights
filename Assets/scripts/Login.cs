@@ -21,7 +21,7 @@ public class Login : MonoBehaviour {
 		loginPassword = PasswordInputField.text;
 	}
 	public void loginSubmit(){
-		string url = "http://localhost:8080/poker/api/user/login?username=loginPhoneNum&password=loginPassword";
+		string url = "http://localhost:8080/poker/api/user/login?username="+loginPhoneNum+"&password="+loginPassword;
 		WWW www = new WWW(url);
 		StartCoroutine(WaitForRequest(www));
 	}
