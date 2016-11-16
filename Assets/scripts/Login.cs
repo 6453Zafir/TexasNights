@@ -6,9 +6,15 @@ public class Login : MonoBehaviour {
 	public Camera MainCamera;
 	public InputField PhoneNumInputField;
 	public InputField PasswordInputField;
-	public Text errcodeText;
-	private int loginPhoneNum;
-	private string loginPassword;
+
+	public InputField ForgetPasswordPhoneNumInputField;
+	public InputField ForgetPasswordVarifyCodeInputField;
+	public InputField ForgetPasswordNewPasswordInputField;
+	public InputField ForgetPasswordComfirmNewPasswordInputField;
+
+	public Text LoginerrorText;
+	public Text ForgetPasswordText;
+
 	// Use this for initialization
 
 	void Start () {
@@ -17,16 +23,22 @@ public class Login : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		loginPhoneNum = int.Parse(PhoneNumInputField.text);
-		loginPassword = PasswordInputField.text;
 	}
+
 	public void loginSubmit(){
-		string EncodedPassword = Md5Sum (loginPassword);
-		string url = "http://localhost:8080/poker/api/user/login?username="+loginPhoneNum+"&password="+ EncodedPassword;
+		string EncodedPassword = Md5Sum (PasswordInputField.text);
+		string url = "http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword;
 		WWW www = new WWW(url);
 		StartCoroutine(WaitForRequest(www));
 	}
-	
+
+	public void forgetPasswordSubmit(){
+
+
+	}
+
+
+
 	IEnumerator WaitForRequest(WWW www)
 	{
 		yield return www;
@@ -40,18 +52,41 @@ public class Login : MonoBehaviour {
 		}    
 	}
 
+	public void getVariyCode(){
+		string url = "http://localhost:8080/poker/api/user/getVerifyCode?phone="+int.Parse(ForgetPasswordPhoneNumInputField.text);
+		WWW www = new WWW(url);
+		StartCoroutine(WaitForRequest(www));
+	}
+
 	public void varifyLoginInput(){
-		if (loginPhoneNum == null || loginPassword == null) {
-			errcodeText.text = "用户名或密码不能为空";
+		if (int.Parse(PhoneNumInputField.text) == null || PasswordInputField.text == "") {
+			LoginerrorText.text = "用户名或密码不能为空";
 		}
-		if (loginPassword.Length <= 4) {
-			errcodeText.text = "密码长度需大于四位";
+		if (PasswordInputField.text.Length <= 6) {
+			LoginerrorText.text = "密码长度需大于六位";
 		} else {
-			errcodeText.text = "";
+			LoginerrorText.text = "";
 			FlexiableView.GetComponent<AlertController>().hideall();
 			MainCamera.GetComponent<CameraController>().setisLogin();
 		}
 	}
+
+	public void varifyForgetPasswordInput(){
+		if (int.Parse (ForgetPasswordPhoneNumInputField.text) == null || 
+			ForgetPasswordVarifyCodeInputField.text == "" ||
+			ForgetPasswordNewPasswordInputField.text == "") {
+			ForgetPasswordText.text = "手机号、验证码或密码不能为空";
+		} else if (int.Parse (ForgetPasswordPhoneNumInputField.text) != null && ForgetPasswordNewPasswordInputField.text.Length <= 6) {
+			ForgetPasswordText.text = "密码长度需大于六位";
+		} else if (!ForgetPasswordNewPasswordInputField.text.Equals( ForgetPasswordComfirmNewPasswordInputField.text) ) {
+			print ("comfirm problem");
+			ForgetPasswordText.text = "两次密码输入不一致";
+		} else {
+			ForgetPasswordText.text = "";
+			FlexiableView.GetComponent<AlertController>().switchbetwenforgetPassword();
+		}
+	}
+
 
 	public string Md5Sum(string password)
 	{
