@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	public bool richlist = false; 
 	public bool store = false;
 	public bool isChooseOpen = false;
+	public bool hasfillInfo = false;
 
 	void Awake(){
 		if (instance == null) {

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Login : MonoBehaviour {
 	public GameObject FlexiableView;
 	public Camera MainCamera;
+
 	public InputField PhoneNumInputField;
 	public InputField PasswordInputField;
 
@@ -12,15 +13,15 @@ public class Login : MonoBehaviour {
 	public InputField ForgetPasswordNewPasswordInputField;
 	public InputField ForgetPasswordComfirmNewPasswordInputField;
 
+	public InputField RegisterPhoneNumInputField;
+	public InputField RegisterVarifyCodeInputField;
+	public InputField RegisterPasswordInputField;
+	public InputField RegisterComfirmNewPasswordInputField;
+	
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
+	public Text RegistererrorText;
 
-	// Use this for initialization
-
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 	}
@@ -34,22 +35,14 @@ public class Login : MonoBehaviour {
 
 	public void forgetPasswordSubmit(){
 
-
 	}
 
+	public void registerSubmit(){
+	
+	} 
 
-
-	IEnumerator WaitForRequest(WWW www)
-	{
-		yield return www;
-		
-		// check for errors
-		if (www.error == null)
-		{
-			Debug.Log("WWW Ok!: " + www.data);
-		} else {
-			Debug.Log("WWW Error: "+ www.error);
-		}    
+	public void fillInfo(){
+	
 	}
 
 	public void getVariyCode(){
@@ -79,11 +72,25 @@ public class Login : MonoBehaviour {
 		} else if (int.Parse (ForgetPasswordPhoneNumInputField.text) != null && ForgetPasswordNewPasswordInputField.text.Length <= 6) {
 			ForgetPasswordText.text = "密码长度需大于六位";
 		} else if (!ForgetPasswordNewPasswordInputField.text.Equals( ForgetPasswordComfirmNewPasswordInputField.text) ) {
-			print ("comfirm problem");
 			ForgetPasswordText.text = "两次密码输入不一致";
 		} else {
 			ForgetPasswordText.text = "";
 			FlexiableView.GetComponent<AlertController>().switchbetwenforgetPassword();
+		}
+	}
+
+	public void varifyRegisterInput(){
+		if (int.Parse (RegisterPhoneNumInputField.text) == null || 
+		    RegisterVarifyCodeInputField.text == "" ||
+		    RegisterPasswordInputField.text == "") {
+			RegistererrorText.text = "手机号、验证码或密码不能为空";
+		} else if (int.Parse (RegisterPasswordInputField.text) != null && RegisterPasswordInputField.text.Length <= 6) {
+			RegistererrorText.text = "密码长度需大于六位";
+		} else if (!RegisterPasswordInputField.text.Equals( RegisterComfirmNewPasswordInputField.text) ) {
+			RegistererrorText.text = "两次密码输入不一致";
+		} else {
+			RegistererrorText.text = "";
+			FlexiableView.GetComponent<AlertController>().toFillInfomation();
 		}
 	}
 
@@ -106,5 +113,18 @@ public class Login : MonoBehaviour {
 		}
 		
 		return hashString.PadLeft(32, '0');
+	}
+
+	IEnumerator WaitForRequest(WWW www)
+	{
+		yield return www;
+		
+		// check for errors
+		if (www.error == null)
+		{
+			Debug.Log("WWW Ok!: " + www.data);
+		} else {
+			Debug.Log("WWW Error: "+ www.error);
+		}    
 	}
 }
