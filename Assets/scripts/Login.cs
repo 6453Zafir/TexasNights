@@ -21,10 +21,9 @@ public class Login : MonoBehaviour {
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
 	public Text RegistererrorText;
-
-	// Update is called once per frame
-	void Update () {
-	}
+	
+	public Sprite Avatars = Resources.Load<Sprite>("avatars");   
+	public Image currentAvatar;
 
 	public void loginSubmit(){
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
@@ -51,9 +50,14 @@ public class Login : MonoBehaviour {
 		StartCoroutine(WaitForRequest(www));
 	}
 
+	public void changeAvatar(){
+		print (Avatars);
+		currentAvatar.sprite = Avatars;
+	}
+
 	public void varifyLoginInput(){
 		if (int.Parse(PhoneNumInputField.text) == null || PasswordInputField.text == "") {
-			LoginerrorText.text = "用户名或密码不能为空";
+			LoginerrorText.text = "手机号或密码不能为空";
 		}
 		if (PasswordInputField.text.Length <= 6) {
 			LoginerrorText.text = "密码长度需大于六位";
@@ -106,12 +110,10 @@ public class Login : MonoBehaviour {
 		
 		// Convert the encrypted bytes back to a string (base 16)
 		string hashString = "";
-		
 		for (int i = 0; i < hashBytes.Length; i++)
 		{
 			hashString += System.Convert.ToString(hashBytes[i], 16).PadLeft(2, '0');
 		}
-		
 		return hashString.PadLeft(32, '0');
 	}
 
