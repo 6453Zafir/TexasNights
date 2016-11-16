@@ -11,41 +11,41 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Update () {
-		print ("singleton isStarted" + GameManager.instance.isStarted);
+		print (" isStarted "+GameManager.instance.isLogin);
 		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
 		GameObject friendpanelarea = FlexableCanvas.transform.GetChild (3).gameObject.transform.GetChild(0).gameObject;
 		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
 		GameObject roompanelarea = FlexableCanvas.transform.GetChild (5).gameObject.transform.GetChild(0).gameObject;
 
-		GameManager.instance.isStarted = CamAniController.GetBool ("isStarted");
-		GameManager.instance.InfoOpen = CamAniController.GetBool ("InfoOpen");
-		GameManager.instance.friendListOpen = CamAniController.GetBool ("friendListOpen");
-		GameManager.instance.settingOpen = CamAniController.GetBool ("settingListOpen");
-		GameManager.instance.richlist = CamAniController.GetBool ("richListOpen");
-		GameManager.instance.store = CamAniController.GetBool("storeOpen");
-		GameManager.instance.isChooseOpen = FlexableCanvas.GetComponent<AlertController> ().isChooseOpen;	 
+		CamAniController.SetBool ("isStarted",GameManager.instance.isStarted) ;
+		CamAniController.SetBool ("InfoOpen", GameManager.instance.InfoOpen);
+		CamAniController.SetBool ("friendListOpen",GameManager.instance.friendListOpen);
+		CamAniController.SetBool ("settingListOpen",GameManager.instance.settingOpen);
+		CamAniController.SetBool ("richListOpen",GameManager.instance.richlist);
+		CamAniController.SetBool ("storeOpen",GameManager.instance.store);
+		FlexableCanvas.GetComponent<AlertController> ().isChooseOpen= GameManager.instance.isChooseOpen;
 
 		if(GameManager.instance.isStarted){
-			turnOnEffects();
-			print ("isStarted "+GameManager.instance.isStarted+"isRegister"+GameManager.instance.isRegister+"isLoginViewAlerted"+GameManager.instance.isRegister);
+			print (" isLogin "+GameManager.instance.isLogin);
 			if(GameManager.instance.isLogin||GameManager.instance.isRegister){
-				turnOffEffects();
+				turnOffBlurEffects();
 				if(GameManager.instance.InfoOpen){
-					turnOnEffects();
+					turnOnBlurEffects();
 					HideAlertIfClickedOutside(infopanelarea);
 				}else if(GameManager.instance.settingOpen){
-					turnOnEffects();
+					turnOnBlurEffects();
 					HideAlertIfClickedOutside(settingpanelarea);
 				}else if(GameManager.instance.friendListOpen){
-					turnOnEffects();
+					turnOnBlurEffects();
 					HideAlertIfClickedOutside(friendpanelarea);
 				}else if(GameManager.instance.isChooseOpen){
-					turnOnEffects();
+					turnOnBlurEffects();
 					HideAlertIfClickedOutside(roompanelarea);
 				}else{
 					Debug.Log("Noting opened");
 				}
 			}else if(!GameManager.instance.isLogin && !GameManager.instance.isLoginViewAlerted){
+				turnOnBlurEffects();
 				Invoke("ZoomToInfo",0);
 				FlexableCanvas.GetComponent<AlertController>().alertLogin();
 				GameManager.instance.isLoginViewAlerted = true;
@@ -61,30 +61,29 @@ public class CameraController : MonoBehaviour {
 	}
 
 	public void ZoomToFull(){
-		CamAniController.SetBool ("isStarted", true);
+		GameManager.instance.isStarted = true;
 	}
 	public void ZoomToInfo(){
-		CamAniController.SetBool ("InfoOpen", true);
+		GameManager.instance.InfoOpen = true;
 	}
 	public void ZoomToFriendList(){
-		CamAniController.SetBool ("friendListOpen", true);
+		GameManager.instance.friendListOpen = true;
 	}
 	public void ZoomToSetting(){
-		CamAniController.SetBool ("settingListOpen", true);
+		GameManager.instance.settingOpen = true;
 	}
 	public void SlideToRichlist(){
-		CamAniController.SetBool ("richListOpen", true);
+		GameManager.instance.richlist = true;
 	}
 	public void SlideToStore(){
-		CamAniController.SetBool ("storeOpen", true);
+		GameManager.instance.store= true;
 	}
 
 	public void RichListBackToMain(){
-		CamAniController.SetBool ("richListOpen", false);
+		GameManager.instance.richlist = false;
 	}
 	public void StoreBackToMain(){
-		Debug.Log("backed!!!!!!!");
-		CamAniController.SetBool ("storeOpen", false);
+		GameManager.instance.store = false;
 	}
 
 	private void HideAlertIfClickedOutside(GameObject panel) {
@@ -97,38 +96,39 @@ public class CameraController : MonoBehaviour {
 			GameObject panelParent = panel.transform.parent.gameObject;
 			panelParent.SetActive(false);
 			if(panelParent.name == "InfoView"){
-				CamAniController.SetBool ("InfoOpen", false);
-				turnOffEffects();
+				GameManager.instance.InfoOpen = false;
+				turnOffBlurEffects();
 			}else if(panelParent.name == "FriendListView"){
-				CamAniController.SetBool ("friendListOpen", false);
-				turnOffEffects();
+				GameManager.instance.friendListOpen = false;
+				turnOffBlurEffects();
 			}else if(panelParent.name == "SettingView"){
-				CamAniController.SetBool ("settingListOpen", false);
-				turnOffEffects();
+				GameManager.instance.settingOpen = false;
+				turnOffBlurEffects();
 			}else if(panelParent.name == "ChooseRoomView"){
-				FlexableCanvas.GetComponent<AlertController>().isChooseOpen = false;
+				GameManager.instance.isChooseOpen = false;
 				FlexableCanvas.GetComponent<AlertController>().hideall();
-				turnOffEffects();
+				turnOffBlurEffects();
 			}else{
 				Debug.Log("nothing opened");
 			}
 		}
 	}
 	 
+
 	public void setisLogin(){
 		GameManager.instance.isLogin = true;
-		CamAniController.SetBool ("InfoOpen", false);
+		GameManager.instance.InfoOpen = false;
 	}
 	public void setisRegister(){
 		GameManager.instance.isRegister = true;
-		CamAniController.SetBool ("InfoOpen", false);
+		GameManager.instance.InfoOpen = false;
 	}
 
-	public void turnOnEffects(){
+	public void turnOnBlurEffects(){
 		GetComponent<Blur>().enabled = true;
 		GetComponent<VignetteAndChromaticAberration>().enabled = true;
 	}
-	public void turnOffEffects(){
+	public void turnOffBlurEffects(){
 		GetComponent<Blur>().enabled = false;
 		GetComponent<VignetteAndChromaticAberration>().enabled = false;
 	}

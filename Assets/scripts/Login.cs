@@ -19,7 +19,6 @@ public class Login : MonoBehaviour {
 	void Update () {
 		loginPhoneNum = int.Parse(PhoneNumInputField.text);
 		loginPassword = PasswordInputField.text;
-		print (loginPhoneNum + loginPassword);
 	}
 	public void loginSubmit(){
 		string url = "http://localhost:8080/poker/api/user/login?username=loginPhoneNum&password=loginPassword";
