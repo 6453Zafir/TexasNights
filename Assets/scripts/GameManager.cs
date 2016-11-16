@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 		} else if (instance != null) {
 			Destroy(gameObject);
 		}
+		DontDestroyOnLoad (this);
 	}
 	
 	// Use this for initialization
