@@ -23,14 +23,26 @@ public class Login : MonoBehaviour {
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
 	public Text RegistererrorText;
-	//public Sprite Avatars = Resources.Load<Sprite>("avatars");  
 
+	private Object [] sprites;
+	private GameObject avatar;
+	private SpriteRenderer renderer;
 
-	void start(){
+	void Start(){
+		avatar = new GameObject ("avatar");
+		avatar.transform.parent = AvatarButton.transform;
+		avatar.transform.position = AvatarButton.transform.position;
+		avatar.transform.localScale = new Vector3 (5.6f, 5.4f, 5f);
+		avatar.layer = 8;
+		if (avatar != null) {
+			renderer = avatar.AddComponent<SpriteRenderer> ();
+			sprites = Resources.LoadAll ("avatars");
+			renderer.sortingLayerName = LAYER_NAME;
+			renderer.sortingOrder = 1;
+		} else {
+			print("the avatar havn't newed");
+		}
 
-	}
-
-	void update(){
 	}
 
 	public void loginSubmit(){
@@ -48,27 +60,12 @@ public class Login : MonoBehaviour {
 	}
 
 	public void changeAvatar(){
-		Object [] sprites;
-		GameObject avatar = new GameObject ("avatar");
-		SpriteRenderer renderer= avatar.AddComponent<SpriteRenderer> ();
-
-		avatar.layer = 8;
-		avatar.transform.parent = AvatarButton.transform;
-		avatar.transform.position = AvatarButton.transform.position;
-		avatar.transform.localScale = new Vector3 (5.6f, 5.4f, 5f);
-		
-		sprites = Resources.LoadAll ("avatars");
-		renderer.sortingLayerName = LAYER_NAME;
-		renderer.sortingOrder = 1;
-
-
-		if (GameManager.instance.AvatarNum <= sprites.Length-1) {
-			renderer.sprite = (Sprite)sprites [GameManager.instance.AvatarNum++];
-		} else {
+		if (GameManager.instance.AvatarNum < sprites.Length-1) {
+			renderer.sprite = (Sprite)sprites [++GameManager.instance.AvatarNum];
+		}else{
 			GameManager.instance.AvatarNum = 1;
 			renderer.sprite = (Sprite)sprites [GameManager.instance.AvatarNum];
 		}
-		print ("the sprite length: "+ sprites.Length);
 	}
 		
 	
