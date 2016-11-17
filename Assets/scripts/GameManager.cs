@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	public bool store = false;
 	public bool isChooseOpen = false;
 	public bool hasfillInfo = false;
-	public int AvatarNum = 1;
+	public int AvatarNum = 0;
 
 	void Awake(){
 		if (instance == null) {

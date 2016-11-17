@@ -6,9 +6,10 @@ public class Login : MonoBehaviour {
 	public Camera MainCamera;
 	public GameObject AvatarButton;
 	public const string LAYER_NAME = "element";
-
 	public InputField PhoneNumInputField;
 	public InputField PasswordInputField;
+
+
 
 	public InputField ForgetPasswordPhoneNumInputField;
 	public InputField ForgetPasswordVarifyCodeInputField;
@@ -29,6 +30,7 @@ public class Login : MonoBehaviour {
 	private SpriteRenderer renderer;
 
 	void Start(){
+		//头像按钮
 		avatar = new GameObject ("avatar");
 		avatar.transform.parent = AvatarButton.transform;
 		avatar.transform.position = AvatarButton.transform.position;
@@ -45,20 +47,23 @@ public class Login : MonoBehaviour {
 
 	}
 
+	//登录提交
 	public void loginSubmit(){
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
+		//string EncodedPassword = Md5Sum (LPasswordInputField.text);    
 		string url = "http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword;
 		WWW www = new WWW(url);
 		StartCoroutine(WaitForRequest(www));
 	}
 
-
+	//获取验证码
 	public void getVariyCode(){
 		string url = "http://localhost:8080/poker/api/user/getVerifyCode?phone="+int.Parse(ForgetPasswordPhoneNumInputField.text);
 		WWW www = new WWW(url);
 		StartCoroutine(WaitForRequest(www));
 	}
 
+	//环头像
 	public void changeAvatar(){
 		if (GameManager.instance.AvatarNum < sprites.Length-1) {
 			renderer.sprite = (Sprite)sprites [++GameManager.instance.AvatarNum];
@@ -68,19 +73,22 @@ public class Login : MonoBehaviour {
 		}
 	}
 		
-	
+	//忘记密码提交
 	public void forgetPasswordSubmit(){
 		
 	}
-	
+
+	//注册提交
 	public void registerSubmit(){
 		
 	} 
-	
-	public void fillInfo(){
+
+	//完善信息表单验证
+	public void varifyInfoInput(){
+
 		
 	}
-
+	//登录表单验证
 	public void varifyLoginInput(){
 		if (int.Parse(PhoneNumInputField.text) == null || PasswordInputField.text == "") {
 			LoginerrorText.text = "手机号或密码不能为空";
@@ -94,6 +102,7 @@ public class Login : MonoBehaviour {
 		}
 	}
 
+	//忘记密码表单验证
 	public void varifyForgetPasswordInput(){
 		if (int.Parse (ForgetPasswordPhoneNumInputField.text) == null || 
 			ForgetPasswordVarifyCodeInputField.text == "" ||
@@ -109,6 +118,7 @@ public class Login : MonoBehaviour {
 		}
 	}
 
+	//注册表单验证
 	public void varifyRegisterInput(){
 		if (int.Parse (RegisterPhoneNumInputField.text) == null || 
 		    RegisterVarifyCodeInputField.text == "" ||
@@ -124,7 +134,7 @@ public class Login : MonoBehaviour {
 		}
 	}
 
-
+	//Md5密码加密
 	public string Md5Sum(string password)
 	{
 		System.Text.UTF8Encoding ue = new System.Text.UTF8Encoding();
@@ -143,6 +153,7 @@ public class Login : MonoBehaviour {
 		return hashString.PadLeft(32, '0');
 	}
 
+	//网络请求等待
 	IEnumerator WaitForRequest(WWW www)
 	{
 		yield return www;
