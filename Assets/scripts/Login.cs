@@ -6,10 +6,9 @@ public class Login : MonoBehaviour {
 	public Camera MainCamera;
 	public GameObject AvatarButton;
 	public const string LAYER_NAME = "element";
+
 	public InputField PhoneNumInputField;
 	public InputField PasswordInputField;
-
-
 
 	public InputField ForgetPasswordPhoneNumInputField;
 	public InputField ForgetPasswordVarifyCodeInputField;
@@ -20,7 +19,10 @@ public class Login : MonoBehaviour {
 	public InputField RegisterVarifyCodeInputField;
 	public InputField RegisterPasswordInputField;
 	public InputField RegisterComfirmNewPasswordInputField;
-	
+
+	public InputField FillInfoNicknameInputField;
+
+
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
 	public Text RegistererrorText;
