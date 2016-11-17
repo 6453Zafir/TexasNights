@@ -25,6 +25,11 @@ public class Login : MonoBehaviour {
 	public Text RegistererrorText;
 	//public Sprite Avatars = Resources.Load<Sprite>("avatars");  
 
+
+	void start(){
+
+	}
+
 	void update(){
 	}
 
@@ -43,18 +48,26 @@ public class Login : MonoBehaviour {
 	}
 
 	public void changeAvatar(){
+		Object [] sprites;
 		GameObject avatar = new GameObject ("avatar");
+		SpriteRenderer renderer= avatar.AddComponent<SpriteRenderer> ();
+
 		avatar.layer = 8;
 		avatar.transform.parent = AvatarButton.transform;
 		avatar.transform.position = AvatarButton.transform.position;
-		//avatar.transform.SetParent (AvatarButton.transform, true);
 		avatar.transform.localScale = new Vector3 (5.6f, 5.4f, 5f);
-		SpriteRenderer renderer= avatar.AddComponent<SpriteRenderer> ();
-		Object [] sprites;
+		
 		sprites = Resources.LoadAll ("avatars");
 		renderer.sortingLayerName = LAYER_NAME;
 		renderer.sortingOrder = 1;
-		renderer.sprite = (Sprite)sprites [0];
+
+
+		if (GameManager.instance.AvatarNum <= sprites.Length-1) {
+			renderer.sprite = (Sprite)sprites [GameManager.instance.AvatarNum++];
+		} else {
+			GameManager.instance.AvatarNum = 1;
+			renderer.sprite = (Sprite)sprites [GameManager.instance.AvatarNum];
+		}
 		print ("the sprite length: "+ sprites.Length);
 	}
 		
