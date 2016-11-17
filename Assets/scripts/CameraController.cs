@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Update () {
-		print (" isStarted "+GameManager.instance.isLogin);
+		print (" isStarted "+GameManager.instance.isStarted);
 		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
 		GameObject friendpanelarea = FlexableCanvas.transform.GetChild (3).gameObject.transform.GetChild(0).gameObject;
 		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;

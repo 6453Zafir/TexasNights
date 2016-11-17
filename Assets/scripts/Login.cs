@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class Login : MonoBehaviour {
 	public GameObject FlexiableView;
 	public Camera MainCamera;
+	public GameObject AvatarButton;
+	public const string LAYER_NAME = "element";
 
 	public InputField PhoneNumInputField;
 	public InputField PasswordInputField;
@@ -21,9 +23,10 @@ public class Login : MonoBehaviour {
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
 	public Text RegistererrorText;
-	
-	public Sprite Avatars = Resources.Load<Sprite>("avatars");   
-	public Image currentAvatar;
+	//public Sprite Avatars = Resources.Load<Sprite>("avatars");  
+
+	void update(){
+	}
 
 	public void loginSubmit(){
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
@@ -32,17 +35,6 @@ public class Login : MonoBehaviour {
 		StartCoroutine(WaitForRequest(www));
 	}
 
-	public void forgetPasswordSubmit(){
-
-	}
-
-	public void registerSubmit(){
-	
-	} 
-
-	public void fillInfo(){
-	
-	}
 
 	public void getVariyCode(){
 		string url = "http://localhost:8080/poker/api/user/getVerifyCode?phone="+int.Parse(ForgetPasswordPhoneNumInputField.text);
@@ -51,8 +43,32 @@ public class Login : MonoBehaviour {
 	}
 
 	public void changeAvatar(){
-		print (Avatars);
-		currentAvatar.sprite = Avatars;
+		GameObject avatar = new GameObject ("avatar");
+		avatar.layer = 8;
+		avatar.transform.parent = AvatarButton.transform;
+		avatar.transform.position = AvatarButton.transform.position;
+		//avatar.transform.SetParent (AvatarButton.transform, true);
+		avatar.transform.localScale = new Vector3 (5.6f, 5.4f, 5f);
+		SpriteRenderer renderer= avatar.AddComponent<SpriteRenderer> ();
+		Object [] sprites;
+		sprites = Resources.LoadAll ("avatars");
+		renderer.sortingLayerName = LAYER_NAME;
+		renderer.sortingOrder = 1;
+		renderer.sprite = (Sprite)sprites [0];
+		print ("the sprite length: "+ sprites.Length);
+	}
+		
+	
+	public void forgetPasswordSubmit(){
+		
+	}
+	
+	public void registerSubmit(){
+		
+	} 
+	
+	public void fillInfo(){
+		
 	}
 
 	public void varifyLoginInput(){
