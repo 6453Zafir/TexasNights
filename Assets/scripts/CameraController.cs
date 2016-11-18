@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour {
 
 		CamAniController.SetBool ("isStarted",GameManager.instance.isStarted) ;
 		CamAniController.SetBool ("InfoOpen", GameManager.instance.InfoOpen);
-		print ("animation condition InfoOpen " + CamAniController.GetBool("InfoOpen"));
 		CamAniController.SetBool ("friendListOpen",GameManager.instance.friendListOpen);
 		CamAniController.SetBool ("settingListOpen",GameManager.instance.settingOpen);
 		CamAniController.SetBool ("richListOpen",GameManager.instance.richlist);
@@ -41,7 +40,6 @@ public class CameraController : MonoBehaviour {
 					turnOnBlurEffects();
 					HideAlertIfClickedOutside(roompanelarea);
 				}else{
-					Debug.Log("Noting opened");
 				}
 			}else if(!GameManager.instance.isLogin && !GameManager.instance.isLoginViewAlerted){
 				turnOnBlurEffects();

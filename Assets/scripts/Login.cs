@@ -137,23 +137,25 @@ public class Login : MonoBehaviour {
 
 	//完善信息表单验证
 	public void varifyInfoInput(){
-		if (FillInfoNicknameInputField.text == null || GenderToggle.AnyTogglesOn() == false 
-		    ||GameManager.instance.AvatarNum<1||GameManager.instance.AvatarNum>6) {
-			FillInfoerrerText.text = "昵称、头像或性别不能为空";
-		}
-		if (FillInfoNicknameInputField.text.Length <= 6) {
-			FillInfoerrerText.text = "昵称长度需大于六位";
-		} else {
+		print ("avatarNum" + GameManager.instance.AvatarNum);
+		if (GameManager.instance.AvatarNum == 0) {
+			FillInfoerrerText.text = "请选择一个头像";
+		} else if (FillInfoNicknameInputField.text == "") {
+			FillInfoerrerText.text = "昵称不能为空";
+		} else if (GenderToggle.AnyTogglesOn () == false) {
+			FillInfoerrerText.text = "请选择性别";
+		} else if (GameManager.instance.AvatarNum > 0 && FillInfoNicknameInputField.text != ""
+			&& GenderToggle.AnyTogglesOn () == true) {
 			FillInfoerrerText.text = "";
-			FlexiableView.GetComponent<AlertController>().hideall();
+			FlexiableView.GetComponent<AlertController> ().hideall ();
 			if (GameManager.instance.isRegister) {
-				print("信息已完善");
+				print ("信息已完善");
 				GameManager.instance.isInfoFilled = true;
 				GameManager.instance.InfoOpen = false;
 			} else {
-				print("还未注册手机号");
+				print ("还未注册手机号");
 			}
-		}		
+		}
 	}
 
 	//Md5密码加密
