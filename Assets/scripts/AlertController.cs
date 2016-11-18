@@ -65,7 +65,7 @@ public class AlertController : MonoBehaviour {
 				Animation a =  child.GetComponent<Animation>();
 				a.Play();
 				a["infoBoard"].speed = 3;
-				child.transform.GetChild(0).gameObject.SetActive(true);
+			child.transform.GetChild(0).gameObject.SetActive(true);
 			} else {
 				child.gameObject.SetActive(false);
 			}

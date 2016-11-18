@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
+
+
 public class Login : MonoBehaviour {
 	public GameObject FlexiableView;
 	public Camera MainCamera;
@@ -66,7 +69,7 @@ public class Login : MonoBehaviour {
 		StartCoroutine(WaitForRequest(www));
 	}
 
-	//环头像
+	//换头像
 	public void changeAvatar(){
 		if (GameManager.instance.AvatarNum < sprites.Length-1) {
 			renderer.sprite = (Sprite)sprites [++GameManager.instance.AvatarNum];
@@ -86,7 +89,12 @@ public class Login : MonoBehaviour {
 		
 	} 
 
-
+	//申请查看好友列表
+	//查找好友
+	//添加好友
+	//申请查看富豪榜列表
+	//申请查看玩家资料卡
+	
 	//登录表单验证
 	public void varifyLoginInput(){
 		if (int.Parse(PhoneNumInputField.text) == null || PasswordInputField.text == "") {
@@ -137,11 +145,18 @@ public class Login : MonoBehaviour {
 
 	//完善信息表单验证
 	public void varifyInfoInput(){
-		print ("avatarNum" + GameManager.instance.AvatarNum);
+		//get the gender information
+		IEnumerable<Toggle> activeToggles = GenderToggle.ActiveToggles();
+		foreach(Toggle tg in activeToggles)
+		{
+			Debug.Log("active toggle"+tg.name);
+		}
 		if (GameManager.instance.AvatarNum == 0) {
 			FillInfoerrerText.text = "请选择一个头像";
 		} else if (FillInfoNicknameInputField.text == "") {
 			FillInfoerrerText.text = "昵称不能为空";
+		} else if (FillInfoNicknameInputField.text.Length < 4) {
+			FillInfoerrerText.text = "请输入至少四位昵称";
 		} else if (GenderToggle.AnyTogglesOn () == false) {
 			FillInfoerrerText.text = "请选择性别";
 		} else if (GameManager.instance.AvatarNum > 0 && FillInfoNicknameInputField.text != ""
@@ -149,11 +164,10 @@ public class Login : MonoBehaviour {
 			FillInfoerrerText.text = "";
 			FlexiableView.GetComponent<AlertController> ().hideall ();
 			if (GameManager.instance.isRegister) {
-				print ("信息已完善");
 				GameManager.instance.isInfoFilled = true;
 				GameManager.instance.InfoOpen = false;
 			} else {
-				print ("还未注册手机号");
+				print ("还未注册！");
 			}
 		}
 	}
