@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour {
 
 		CamAniController.SetBool ("isStarted",GameManager.instance.isStarted) ;
 		CamAniController.SetBool ("InfoOpen", GameManager.instance.InfoOpen);
+		print ("animation condition InfoOpen " + CamAniController.GetBool("InfoOpen"));
 		CamAniController.SetBool ("friendListOpen",GameManager.instance.friendListOpen);
 		CamAniController.SetBool ("settingListOpen",GameManager.instance.settingOpen);
 		CamAniController.SetBool ("richListOpen",GameManager.instance.richlist);
@@ -25,7 +26,7 @@ public class CameraController : MonoBehaviour {
 		FlexableCanvas.GetComponent<AlertController> ().isChooseOpen= GameManager.instance.isChooseOpen;
 
 		if(GameManager.instance.isStarted){
-			if(GameManager.instance.isLogin||GameManager.instance.isRegister){
+			if(GameManager.instance.isLogin||GameManager.instance.isInfoFilled){
 				turnOffBlurEffects();
 				if(GameManager.instance.InfoOpen){
 					turnOnBlurEffects();
@@ -111,15 +112,15 @@ public class CameraController : MonoBehaviour {
 			}
 		}
 	}
-	 
-
-	public void setisLogin(){
-		GameManager.instance.isLogin = true;
-		GameManager.instance.InfoOpen = false;
-	}
+	/* 
 	public void setisRegister(){
 		GameManager.instance.isRegister = true;
 		GameManager.instance.InfoOpen = false;
+	}
+	*/
+
+	public void setisFillInfo(){
+
 	}
 
 	public void turnOnBlurEffects(){

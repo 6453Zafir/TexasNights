@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 	public bool isLogin = false;
 	public bool isRegister = false;
+	public bool isInfoFilled = false;
 	public bool isLoginViewAlerted = false;
 	public bool isStarted = false;
 	public bool InfoOpen = false;

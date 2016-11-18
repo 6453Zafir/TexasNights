@@ -21,11 +21,13 @@ public class Login : MonoBehaviour {
 	public InputField RegisterComfirmNewPasswordInputField;
 
 	public InputField FillInfoNicknameInputField;
+	public ToggleGroup GenderToggle;
 
 
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
 	public Text RegistererrorText;
+	public Text FillInfoerrerText;
 
 	private Object [] sprites;
 	private GameObject avatar;
@@ -52,7 +54,6 @@ public class Login : MonoBehaviour {
 	//登录提交
 	public void loginSubmit(){
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
-		//string EncodedPassword = Md5Sum (LPasswordInputField.text);    
 		string url = "http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword;
 		WWW www = new WWW(url);
 		StartCoroutine(WaitForRequest(www));
@@ -85,11 +86,7 @@ public class Login : MonoBehaviour {
 		
 	} 
 
-	//完善信息表单验证
-	public void varifyInfoInput(){
 
-		
-	}
 	//登录表单验证
 	public void varifyLoginInput(){
 		if (int.Parse(PhoneNumInputField.text) == null || PasswordInputField.text == "") {
@@ -100,7 +97,8 @@ public class Login : MonoBehaviour {
 		} else {
 			LoginerrorText.text = "";
 			FlexiableView.GetComponent<AlertController>().hideall();
-			MainCamera.GetComponent<CameraController>().setisLogin();
+			GameManager.instance.isLogin = true;
+			GameManager.instance.InfoOpen = false;
 		}
 	}
 
@@ -132,8 +130,30 @@ public class Login : MonoBehaviour {
 			RegistererrorText.text = "两次密码输入不一致";
 		} else {
 			RegistererrorText.text = "";
+			GameManager.instance.isRegister = true;
 			FlexiableView.GetComponent<AlertController>().toFillInfomation();
 		}
+	}
+
+	//完善信息表单验证
+	public void varifyInfoInput(){
+		if (FillInfoNicknameInputField.text == null || GenderToggle.AnyTogglesOn() == false 
+		    ||GameManager.instance.AvatarNum<1||GameManager.instance.AvatarNum>6) {
+			FillInfoerrerText.text = "昵称、头像或性别不能为空";
+		}
+		if (FillInfoNicknameInputField.text.Length <= 6) {
+			FillInfoerrerText.text = "昵称长度需大于六位";
+		} else {
+			FillInfoerrerText.text = "";
+			FlexiableView.GetComponent<AlertController>().hideall();
+			if (GameManager.instance.isRegister) {
+				print("信息已完善");
+				GameManager.instance.isInfoFilled = true;
+				GameManager.instance.InfoOpen = false;
+			} else {
+				print("还未注册手机号");
+			}
+		}		
 	}
 
 	//Md5密码加密
