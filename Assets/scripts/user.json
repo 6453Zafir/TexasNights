@@ -1,0 +1,54 @@
+{
+    "user": [
+        {
+            "token": "12372heidd93eq13231",
+            "phoneNum": "15221399767",
+            "password": "312131232",
+            "nickname": "超级大美妞",
+            "gender": true,
+            "score": 14123,
+            "range": 1098,
+            "avatar": 5,
+            "level": 5,
+            "winRate": 0.38,
+            "inRace": 0.82,
+            "playtimes": 378,
+            "maxScore": 5298
+        },
+        {
+            "token": "21312312314fsrt3412",
+            "phoneNum": "13123987389",
+            "password": "231231212",
+            "nickname": "超级大丑妞",
+            "gender": true,
+            "score": 14123,
+            "range": 1098,
+            "avatar": 5,
+            "level": 5,
+            "winRate": 0.38,
+            "inRace": 0.82,
+            "playtimes": 378,
+            "maxScore": 5298
+        }
+    ],
+    "room": [
+        {
+            "roomtype": 1,
+            "playerNum": 4,
+            "currentRound": 1,
+            "currentPlayer": 3
+        },
+        {
+            "roomtype": 1,
+            "playerNum": 2,
+            "currentRound": 4,
+            "currentPlayer": 6
+        },
+        {
+            "roomtype": 2,
+            "playerNum": 6,
+            "currentRound": 1,
+            "currentPlayer": 3
+        }
+    ]
+}

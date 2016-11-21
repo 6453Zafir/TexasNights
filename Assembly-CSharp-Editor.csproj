@@ -177,6 +177,9 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>D:/unity/Editor/Data/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="LitJson">
+ <HintPath>D:/TexasOnline/Assets/LitJson.dll</HintPath>
+ </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
  </Reference>

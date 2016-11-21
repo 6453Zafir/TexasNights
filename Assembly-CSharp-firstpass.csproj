@@ -162,6 +162,9 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="LitJson">
+ <HintPath>D:/TexasOnline/Assets/LitJson.dll</HintPath>
+ </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
  </Reference>
