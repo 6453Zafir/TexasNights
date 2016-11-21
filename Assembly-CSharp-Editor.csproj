@@ -147,6 +147,9 @@
  <Reference Include="UnityEditor.Networking">
  <HintPath>D:/unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="LitJson">
+ <HintPath>D:/TexasOnline/Assets/LitJson.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>D:/unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -176,9 +179,6 @@
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>D:/unity/Editor/Data/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="LitJson">
- <HintPath>D:/TexasOnline/Assets/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

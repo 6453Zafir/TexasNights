@@ -54,15 +54,6 @@ public class Login : MonoBehaviour {
 
 	}
 
-
-
-	//获取验证码
-	public void getVariyCode(){
-		string url = "http://localhost:8080/poker/api/user/getVerifyCode?phone="+int.Parse(ForgetPasswordPhoneNumInputField.text);
-		WWW www = new WWW(url);
-		StartCoroutine(WaitForRequest(www));
-	}
-
 	//换头像
 	public void changeAvatar(){
 		if (GameManager.instance.AvatarNum < sprites.Length-1) {
@@ -98,8 +89,8 @@ public class Login : MonoBehaviour {
 			LoginerrorText.text = "密码长度需大于六位";
 		} else {
 			LoginerrorText.text = "";
-			loginSubmit();
-			FlexiableView.GetComponent<AlertController>().hideall();
+//			loginSubmit();
+			//FlexiableView.GetComponent<AlertController>().hideall();
 			GameManager.instance.isLogin = true;
 			GameManager.instance.InfoOpen = false;
 
@@ -186,32 +177,14 @@ public class Login : MonoBehaviour {
 		}
 		return hashString.PadLeft(32, '0');
 	}
-
-	//网络请求等待
-	IEnumerator WaitForRequest(WWW www)
-	{
-		yield return www;
-		
-		// check for errors
-		if (www.error == null)
-		{
-			Debug.Log("WWW Ok!: " + www.data);
-		} else {
-			Debug.Log("WWW Error: "+ www.error);
-		}    
-	}
+	
 
 	//登录提交
-	
+	/*
 	public void loginSubmit(){
 		StartCoroutine(LoginRequest());
-		/*
-		string EncodedPassword = Md5Sum (PasswordInputField.text);
-		string url = "http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword;
-		WWW www = new WWW(url);
-		StartCoroutine(WaitForRequest(www));
-		*/
 	}
+
 
 	IEnumerator LoginRequest(){   
 		//"post请求发送json数据的方式"
@@ -221,23 +194,39 @@ public class Login : MonoBehaviour {
 
 
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
-		WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username=13162195750&password=123123");	
-		//WWW w = new WWW("http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword);
-		while (!w.isDone){yield return new WaitForEndOfFrame();}
-		if (w.error != null){
-			Debug.LogError(w.error);
-		}
-		Debug.Log(w.text);     
-		User userEntity = JsonMapper.ToObject<User> (w.text);
-			Debug.Log("phoneNum= "+userEntity.phoneNum);
-			Debug.Log("gender= "+userEntity.gender);
+		//WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username=13162195750&password=123123");	
+		WWW w = new WWW("http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword);
+	    while (!w.isDone){yield return new WaitForEndOfFrame();}
 
+
+		if (w.text [1].ToString () == "No_Error") {
+			Debug.Log ("登录成功");
+		} else if (w.text [1].ToString () == "Login_Error") {
+			Debug.Log("用户名或密码错误");
+		} else {
+			Debug.Log("错误码并没有解析出来");
+		}
+
+		Debug.Log("teeeeeeeeeext"+w.text);     
+
+		//JsonData userDemo = JsonMapper.ToObject (w.text["data"]);
+		//Debug.Log (userDemo["type"]);
+
+		//User userEntity = JsonMapper.ToObject<User> (w.text["data"]);
+		//	Debug.Log(userEntity);
+			//Debug.Log("gender= "+userEntity.gender);
+
+		FlexiableView.GetComponent<AlertController>().hideall();
+		//yield return w;
+		//while (!w.isDone){yield return new WaitForEndOfFrame();}
 		/*JsonData jd = JsonMapper.ToObject<User>(w.text);
 		for (int i = 0; i < jd.Count; i++)
 		{            
 			Debug.Log("id=" + jd[i]["id"]);
 			Debug.Log("name=" + jd[i]["name"]);
 		}
-		*/
+
 	}
+		*/
+
 }
