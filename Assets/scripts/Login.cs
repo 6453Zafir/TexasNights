@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-
+using LitJson;
 
 public class Login : MonoBehaviour {
 	public GameObject FlexiableView;
@@ -54,13 +54,7 @@ public class Login : MonoBehaviour {
 
 	}
 
-	//登录提交
-	public void loginSubmit(){
-		string EncodedPassword = Md5Sum (PasswordInputField.text);
-		string url = "http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword;
-		WWW www = new WWW(url);
-		StartCoroutine(WaitForRequest(www));
-	}
+
 
 	//获取验证码
 	public void getVariyCode(){
@@ -104,9 +98,11 @@ public class Login : MonoBehaviour {
 			LoginerrorText.text = "密码长度需大于六位";
 		} else {
 			LoginerrorText.text = "";
+			loginSubmit();
 			FlexiableView.GetComponent<AlertController>().hideall();
 			GameManager.instance.isLogin = true;
 			GameManager.instance.InfoOpen = false;
+
 		}
 	}
 
@@ -203,5 +199,45 @@ public class Login : MonoBehaviour {
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 		}    
+	}
+
+	//登录提交
+	
+	public void loginSubmit(){
+		StartCoroutine(LoginRequest());
+		/*
+		string EncodedPassword = Md5Sum (PasswordInputField.text);
+		string url = "http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword;
+		WWW www = new WWW(url);
+		StartCoroutine(WaitForRequest(www));
+		*/
+	}
+
+	IEnumerator LoginRequest(){   
+		//"post请求发送json数据的方式"
+		//WWWForm form = new WWWForm();
+		//form.AddField("username","123");
+		//form.AddField("password","123123123");
+
+
+		string EncodedPassword = Md5Sum (PasswordInputField.text);
+		WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username=13162195750&password=123123");	
+		//WWW w = new WWW("http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword);
+		while (!w.isDone){yield return new WaitForEndOfFrame();}
+		if (w.error != null){
+			Debug.LogError(w.error);
+		}
+		Debug.Log(w.text);     
+		User userEntity = JsonMapper.ToObject<User> (w.text);
+			Debug.Log("phoneNum= "+userEntity.phoneNum);
+			Debug.Log("gender= "+userEntity.gender);
+
+		/*JsonData jd = JsonMapper.ToObject<User>(w.text);
+		for (int i = 0; i < jd.Count; i++)
+		{            
+			Debug.Log("id=" + jd[i]["id"]);
+			Debug.Log("name=" + jd[i]["name"]);
+		}
+		*/
 	}
 }
