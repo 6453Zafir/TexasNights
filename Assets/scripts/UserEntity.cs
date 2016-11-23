@@ -12,6 +12,10 @@ public class User
 	/// <summary>
 	/// 
 	/// </summary>
+	public int id { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
 	public string phoneNum { get; set; }
 	/// <summary>
 	/// 

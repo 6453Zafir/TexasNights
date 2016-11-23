@@ -85,14 +85,14 @@ public class Login : MonoBehaviour {
 		if (int.Parse(PhoneNumInputField.text) == null || PasswordInputField.text == "") {
 			LoginerrorText.text = "手机号或密码不能为空";
 		}
-		if (PasswordInputField.text.Length <= 6) {
-			LoginerrorText.text = "密码长度需大于六位";
+		if (PasswordInputField.text.Length <= 5) {
+			LoginerrorText.text = "密码长度需至少大于六位";
 		} else {
 			LoginerrorText.text = "";
-//			loginSubmit();
+     		loginSubmit();
 			//FlexiableView.GetComponent<AlertController>().hideall();
-			GameManager.instance.isLogin = true;
-			GameManager.instance.InfoOpen = false;
+			//GameManager.instance.isLogin = true;
+			//GameManager.instance.InfoOpen = false;
 
 		}
 	}
@@ -180,9 +180,9 @@ public class Login : MonoBehaviour {
 	
 
 	//登录提交
-	/*
+
 	public void loginSubmit(){
-		StartCoroutine(LoginRequest());
+		StartCoroutine (LoginRequest ());
 	}
 
 
@@ -194,39 +194,63 @@ public class Login : MonoBehaviour {
 
 
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
-		//WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username=13162195750&password=123123");	
-		WWW w = new WWW("http://localhost:8080/poker/api/user/login?username="+int.Parse(PhoneNumInputField.text)+"&password="+ EncodedPassword);
+		//WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username=13162195750&password=1223123");	
+		WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username="+PhoneNumInputField.text+"&password="+PasswordInputField.text);
 	    while (!w.isDone){yield return new WaitForEndOfFrame();}
 
+			JsonData jsonData = JsonMapper.ToObject (w.text);
+			
+			if (((IDictionary)jsonData).Contains ("callStatus")) {
+				Debug.Log ("登录结果" + jsonData ["callStatus"]);
+				
+				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
+					LoginerrorText.color = Color.green;
+					LoginerrorText.text = "登录成功!";
+					Debug.Log ("登录成功");
+				FlexiableView.GetComponent<AlertController> ().hideall ();
+				GameManager.instance.isLogin = true;
+				GameManager.instance.InfoOpen = false;
+					/*
+				User userOj = new User();
+				userOj.token = jsonData["data"]["token"].ToString();
+				userOj.id = int.Parse(jsonData["data"]["id"].ToString());
+				userOj.phoneNum = jsonData["data"]["username"].ToString();
+				userOj.password = jsonData["data"]["password"].ToString();
+				userOj.nickname = jsonData["data"]["realname"].ToString();
+				userOj.score = int.Parse(jsonData["data"]["score"].ToString());
+				userOj.playtimes = int.Parse(jsonData["data"]["allnum"].ToString());
+				userOj.winRate = int.Parse(jsonData["data"]["winnum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
+				userOj.inRace = int.Parse(jsonData["data"]["gatenum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
+				userOj.range = int.Parse(jsonData["data"]["rank"].ToString());
+				userOj.level = int.Parse(jsonData["data"]["level"].ToString());
+				userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
 
-		if (w.text [1].ToString () == "No_Error") {
-			Debug.Log ("登录成功");
-		} else if (w.text [1].ToString () == "Login_Error") {
-			Debug.Log("用户名或密码错误");
-		} else {
-			Debug.Log("错误码并没有解析出来");
-		}
-
-		Debug.Log("teeeeeeeeeext"+w.text);     
-
-		//JsonData userDemo = JsonMapper.ToObject (w.text["data"]);
-		//Debug.Log (userDemo["type"]);
-
-		//User userEntity = JsonMapper.ToObject<User> (w.text["data"]);
-		//	Debug.Log(userEntity);
-			//Debug.Log("gender= "+userEntity.gender);
-
-		FlexiableView.GetComponent<AlertController>().hideall();
-		//yield return w;
-		//while (!w.isDone){yield return new WaitForEndOfFrame();}
-		/*JsonData jd = JsonMapper.ToObject<User>(w.text);
-		for (int i = 0; i < jd.Count; i++)
-		{            
-			Debug.Log("id=" + jd[i]["id"]);
-			Debug.Log("name=" + jd[i]["name"]);
-		}
-
+				Debug.Log(userOj);
+*/
+				} else if (jsonData ["callStatus"].Equals ("FAILED")) {
+					LoginerrorText.color = new Color (0.8f, 0.2f, 0.2f);
+					if (((IDictionary)jsonData).Contains ("errorCode")) {
+						if (jsonData ["errorCode"].Equals ("Login_Error")) {
+							LoginerrorText.text = "用户名或密码错误!";
+							Debug.Log ("用户名或密码错误");
+						} else if (jsonData ["errorCode"].Equals ("Password_error")) {
+							LoginerrorText.text = "密码错误!";
+							Debug.Log ("密码错误");
+						}else if(jsonData ["errorCode"].Equals ("Username_NOT_Exist")) {
+							LoginerrorText.text = "用户名不存在!";
+							Debug.Log ("用户名不存在");
+						}else {
+							Debug.Log ("未知错误");
+						}
+					} else {
+						Debug.Log ("返回的json对象中并没有“errorCode”键");
+					} 		
+				} else {
+					Debug.Log ("callStatus”值异常");
+				}
+			} else {
+				Debug.Log ("返回的json对象中并没有“callStatus”键");
+			}
 	}
-		*/
 
 }

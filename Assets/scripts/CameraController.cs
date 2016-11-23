@@ -52,7 +52,6 @@ public class CameraController : MonoBehaviour {
 			if(GameManager.instance.isLogin){
 				Debug.Log("has login but somehow didn't able to start the game");
 			}else{
-				Debug.Log("have't start the game :(");
 			}
 		}	
 	}
