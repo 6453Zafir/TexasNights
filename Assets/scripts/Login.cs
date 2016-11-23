@@ -210,23 +210,47 @@ public class Login : MonoBehaviour {
 				FlexiableView.GetComponent<AlertController> ().hideall ();
 				GameManager.instance.isLogin = true;
 				GameManager.instance.InfoOpen = false;
-					/*
-				User userOj = new User();
-				userOj.token = jsonData["data"]["token"].ToString();
-				userOj.id = int.Parse(jsonData["data"]["id"].ToString());
-				userOj.phoneNum = jsonData["data"]["username"].ToString();
-				userOj.password = jsonData["data"]["password"].ToString();
-				userOj.nickname = jsonData["data"]["realname"].ToString();
-				userOj.score = int.Parse(jsonData["data"]["score"].ToString());
-				userOj.playtimes = int.Parse(jsonData["data"]["allnum"].ToString());
-				userOj.winRate = int.Parse(jsonData["data"]["winnum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
-				userOj.inRace = int.Parse(jsonData["data"]["gatenum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
-				userOj.range = int.Parse(jsonData["data"]["rank"].ToString());
-				userOj.level = int.Parse(jsonData["data"]["level"].ToString());
-				userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
 
-				Debug.Log(userOj);
-*/
+				User userOj = new User();
+				if(jsonData["token"]!=null){
+					userOj.token = jsonData["token"].ToString();
+				}
+				if(jsonData["data"]["id"]!=null){
+					userOj.id = int.Parse(jsonData["data"]["id"].ToString());
+				}
+				if(jsonData["data"]["username"]!=null){
+					userOj.phoneNum = jsonData["data"]["username"].ToString();
+				}
+				if(jsonData["data"]["password"]!=null){
+					userOj.password = jsonData["data"]["password"].ToString();
+				}
+				if(jsonData["data"]["realname"]!=null){
+					userOj.nickname = jsonData["data"]["realname"].ToString();
+				}
+				if(jsonData["data"]["score"]!=null){
+					userOj.score = int.Parse(jsonData["data"]["score"].ToString());
+				}
+				if(jsonData["data"]["allnum"]!=null){
+					userOj.playtimes = int.Parse(jsonData["data"]["allnum"].ToString());
+				}
+				if(jsonData["data"]["winnum"]!=null||jsonData["data"]["allnum"]!=null){
+					userOj.winRate = int.Parse(jsonData["data"]["winnum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
+				}
+				if(jsonData["data"]["gatenum"]!=null||jsonData["data"]["allnum"]!=null){
+					userOj.inRace = int.Parse(jsonData["data"]["gatenum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
+				}
+				if(jsonData["data"]["rank"]!=null){
+					userOj.range = int.Parse(jsonData["data"]["rank"].ToString());
+				}
+				if(jsonData["data"]["level"]!=null){
+					userOj.level = int.Parse(jsonData["data"]["level"].ToString());
+				}
+				if(jsonData["data"]["pic"]!=null){
+					userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
+				}
+
+				Debug.Log("userAvatar "+userOj.avatar);
+
 				} else if (jsonData ["callStatus"].Equals ("FAILED")) {
 					LoginerrorText.color = new Color (0.8f, 0.2f, 0.2f);
 					if (((IDictionary)jsonData).Contains ("errorCode")) {
