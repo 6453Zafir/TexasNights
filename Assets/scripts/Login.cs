@@ -17,6 +17,7 @@ public class Login : MonoBehaviour {
 	public InputField ForgetPasswordVarifyCodeInputField;
 	public InputField ForgetPasswordNewPasswordInputField;
 	public InputField ForgetPasswordComfirmNewPasswordInputField;
+	public Button ForgetPasswordGetVerifyCode;
 
 	public InputField RegisterPhoneNumInputField;
 	public InputField RegisterVarifyCodeInputField;
@@ -185,14 +186,11 @@ public class Login : MonoBehaviour {
 		StartCoroutine (LoginRequest ());
 	}
 
-
 	IEnumerator LoginRequest(){   
-		//"post请求发送json数据的方式"
+		//"how to send a form in request"
 		//WWWForm form = new WWWForm();
 		//form.AddField("username","123");
 		//form.AddField("password","123123123");
-
-
 		string EncodedPassword = Md5Sum (PasswordInputField.text);
 		//WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username=13162195750&password=1223123");	
 		WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/login?username="+PhoneNumInputField.text+"&password="+PasswordInputField.text);
@@ -276,5 +274,38 @@ public class Login : MonoBehaviour {
 				Debug.Log ("返回的json对象中并没有“callStatus”键");
 			}
 	}
+
+
+	public void getVerifyCode(){
+		StartCoroutine (varifyCodeRequest ());
+	}
+
+	IEnumerator varifyCodeRequest(){
+		if (ForgetPasswordPhoneNumInputField.text != "") {
+			WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/getVerifyCode?phone="+ForgetPasswordPhoneNumInputField.text);
+			while (!w.isDone){yield return new WaitForEndOfFrame();}
+			
+			JsonData jsonData = JsonMapper.ToObject (w.text);
+			if (((IDictionary)jsonData).Contains ("callStatus")) {
+				Debug.Log ("验证码请求结果" + jsonData ["callStatus"]);	
+				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
+					//start the timmer code here...
+					ForgetPasswordGetVerifyCode.interactable = false;
+					ForgetPasswordText.text="验证码已发送";
+					Debug.Log("验证码已发送");
+				} else if (jsonData ["callStatus"].Equals ("FAILED")) {
+					ForgetPasswordText.text = "验证码发送失败";
+				} else {
+					Debug.Log ("callStatus”值异常");
+				}
+			} else {
+				Debug.Log ("返回的json对象中并没有“callStatus”键");
+			}
+
+		} else {
+			ForgetPasswordText.text = "请填写手机号！";
+		}
+	} 
+
 
 }
