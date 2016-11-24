@@ -215,7 +215,7 @@ public class Login : MonoBehaviour {
 					LoginerrorText.text = "登录成功!";
 					Debug.Log ("登录成功");
 				
-				if(!GameManager.instance.isInfoFilled){
+				if(GameManager.instance.userOj.avatar == 0){
 					GameManager.instance.isLogin = true;
 					gameObject.transform.GetChild(0).gameObject.SetActive(false);
 					gameObject.transform.GetChild(1).gameObject.SetActive(true);
