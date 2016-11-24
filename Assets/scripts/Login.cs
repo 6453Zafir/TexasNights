@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using LitJson;
 
 public class Login : MonoBehaviour {
-	public GameObject FlexiableView;
 	public Camera MainCamera;
 	public GameObject AvatarButton;
 	public const string LAYER_NAME = "element";
@@ -170,13 +169,8 @@ public class Login : MonoBehaviour {
 		} else if (GameManager.instance.AvatarNum > 0 && FillInfoNicknameInputField.text != ""
 			&& GenderToggle.AnyTogglesOn () == true) {
 			FillInfoerrerText.text = "";
-			FlexiableView.GetComponent<AlertController> ().hideall ();
-			if (GameManager.instance.isRegister) {
-				GameManager.instance.isInfoFilled = true;
-				GameManager.instance.InfoOpen = false;
-			} else {
-				print ("还未注册！");
-			}
+			StartCoroutine(FillInfoRequest());
+
 		}
 	}
 
@@ -220,10 +214,18 @@ public class Login : MonoBehaviour {
 					LoginerrorText.color = Color.green;
 					LoginerrorText.text = "登录成功!";
 					Debug.Log ("登录成功");
-				FlexiableView.GetComponent<AlertController> ().hideall ();
-				GameManager.instance.isLogin = true;
-				GameManager.instance.InfoOpen = false;
-
+				
+				if(!GameManager.instance.isInfoFilled){
+					GameManager.instance.isLogin = true;
+					gameObject.transform.GetChild(0).gameObject.SetActive(false);
+					gameObject.transform.GetChild(1).gameObject.SetActive(true);
+					gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+					gameObject.transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(true);
+				}else{
+					gameObject.GetComponent<AlertController> ().hideall ();
+					GameManager.instance.isLogin = true;
+					GameManager.instance.InfoOpen = false;
+				}
 				//User GameManager.instance. = new User();
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
@@ -262,7 +264,6 @@ public class Login : MonoBehaviour {
 					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
 				}
 
-				Debug.Log("userAvatar "+GameManager.instance.userOj.avatar);
 
 				} else if (jsonData ["callStatus"].Equals ("FAILED")) {
 					LoginerrorText.color = new Color (0.8f, 0.2f, 0.2f);
@@ -296,62 +297,75 @@ public class Login : MonoBehaviour {
 	}
 
 	IEnumerator varifyCodeRequest(){
-		VerifyFCodeTimeLimit = 60;
-		VerifyRCodeTimeLimit = 60;
-
-		if (ForgetPasswordPhoneNumInputField.text != "") {
-			WWW w = new WWW("http://139.224.59.3:8080/poker/api/user/getVerifyCode?phone="+ForgetPasswordPhoneNumInputField.text);
-			while (!w.isDone){yield return new WaitForEndOfFrame();}
-			
-			JsonData jsonData = JsonMapper.ToObject (w.text);
-			if (((IDictionary)jsonData).Contains ("callStatus")) {
-				Debug.Log ("验证码请求结果" + jsonData ["callStatus"]);	
-				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
-					if(FlexiableView.transform.GetChild(0).gameObject.activeSelf){
-						if(VerifyFCodeTimeLimit >= 0){
+		Debug.Log ("LoginView active + "+gameObject.transform.GetChild (0).gameObject.activeSelf);
+		if (gameObject.transform.GetChild (0).gameObject.activeSelf) {
+			VerifyFCodeTimeLimit = 60;
+			if (ForgetPasswordPhoneNumInputField.text != "") {
+				WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/getVerifyCode?phone=" + ForgetPasswordPhoneNumInputField.text);
+				while (!w.isDone) {
+					yield return new WaitForEndOfFrame ();
+				}
+				JsonData jsonData = JsonMapper.ToObject (w.text);
+				if (((IDictionary)jsonData).Contains ("callStatus")) {
+					Debug.Log ("忘记密码验证码请求结果" + jsonData ["callStatus"]);	
+					if (jsonData ["callStatus"].Equals ("SUCCEED")) {
+						if (VerifyFCodeTimeLimit >= 0) {
 							startFVCodeTimer = true;
 							ForgetPasswordGetVerifyCode.interactable = false;
-							ForgetPasswordText.text="验证码已发送";
-							Debug.Log("验证码已发送");
-						}else{
+							ForgetPasswordText.text = "验证码已发送";
+							Debug.Log ("验证码已发送");
+						} else {
 							startFVCodeTimer = false;
 							ForgetPasswordGetVerifyCode.interactable = true;
 						}
-					}else if(FlexiableView.transform.GetChild(1).gameObject.activeSelf){
-						if(VerifyRCodeTimeLimit >= 0){
+					} else if (jsonData ["callStatus"].Equals ("FAILED")) {
+						ForgetPasswordText.text = "验证码发送失败";
+					} else {
+						Debug.Log ("callStatus”值异常");
+					}
+				} else {
+					Debug.Log ("返回的json对象中并没有“callStatus”键");
+				}
+			}else{
+				ForgetPasswordText.text = "请先填写手机号!";
+			}
+
+		} else if (gameObject.transform.GetChild (1).gameObject.activeSelf) {
+			VerifyRCodeTimeLimit = 60;
+			if (RegisterPhoneNumInputField.text != "") {
+				WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/getVerifyCode?phone=" + RegisterPhoneNumInputField.text);
+				while (!w.isDone) {
+					yield return new WaitForEndOfFrame ();
+				}
+				JsonData jsonData = JsonMapper.ToObject (w.text);
+				if (((IDictionary)jsonData).Contains ("callStatus")) {
+					Debug.Log ("注册验证码请求结果" + jsonData ["callStatus"]);	
+					if (jsonData ["callStatus"].Equals ("SUCCEED")) {
+						if (VerifyRCodeTimeLimit >= 0) {
 							startRVCodeTimer = true;
 							RegisterGetVerifyCode.interactable = false;
-							RegistererrorText.text="验证码已发送";
-							Debug.Log("验证码已发送");
-						}else{
+							RegistererrorText.text = "验证码已发送";
+							Debug.Log ("验证码已发送");
+						} else {
 							startRVCodeTimer = false;
 							RegisterGetVerifyCode.interactable = true;
 						}
-					}else{
-						Debug.Log("弹窗跳转有误");
-					}
-
-				} else if (jsonData ["callStatus"].Equals ("FAILED")) {
-					if(FlexiableView.transform.GetChild(0).gameObject.activeSelf){
-						ForgetPasswordText.text = "验证码发送失败";
-					}else if(FlexiableView.transform.GetChild(1).gameObject.activeSelf){
-						RegistererrorText.text="验证码发送失败";
-					}else{
-						Debug.Log("弹窗跳转有误");
+					} else if (jsonData ["callStatus"].Equals ("FAILED")) {
+						RegistererrorText.text = "验证码发送失败";
+					} else {
+						Debug.Log ("callStatus”值异常");
 					}
 				} else {
-					Debug.Log ("callStatus”值异常");
+					Debug.Log ("返回的json对象中并没有“callStatus”键");
 				}
-			} else {
-				Debug.Log ("返回的json对象中并没有“callStatus”键");
+			}else{
+				RegistererrorText.text = "请先填写手机号!";
 			}
-
 		} else {
-			ForgetPasswordText.text = "请填写手机号！";
+			Debug.Log("弹窗跳转有误");
 		}
 	} 
 
-	
 	IEnumerator forgetPasswordRequest(){
 		startFVCodeTimer = false;
 		WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/forgetPWD?username="+ForgetPasswordPhoneNumInputField.text+"&password="+ForgetPasswordNewPasswordInputField.text+"&code="+ForgetPasswordVarifyCodeInputField.text);
@@ -363,7 +377,7 @@ public class Login : MonoBehaviour {
 			if (jsonData ["callStatus"].Equals ("SUCCEED")) {
 				ForgetPasswordText.color = Color.green;
 				ForgetPasswordText.text="密码修改成功！请重新登录";
-				FlexiableView.GetComponent<AlertController>().switchbetwenforgetPassword();
+				gameObject.GetComponent<AlertController>().switchbetwenforgetPassword();
 				Debug.Log("密码修改成功");
 			} else if (jsonData ["callStatus"].Equals ("FAILED")) {
 				LoginerrorText.color = new Color (0.8f, 0.2f, 0.2f);
@@ -403,9 +417,45 @@ public class Login : MonoBehaviour {
 				RegistererrorText.color = Color.green;
 				RegistererrorText.text="注册成功";
 				GameManager.instance.isRegister = true;
-				FlexiableView.GetComponent<AlertController>().toFillInfomation();
+				gameObject.GetComponent<AlertController>().toFillInfomation();
 				Debug.Log("注册成功");
-				//newUserHere....
+
+				if(jsonData["token"]!=null){
+					GameManager.instance.userOj.token = jsonData["token"].ToString();
+				}
+				if(jsonData["data"]["id"]!=null){
+					GameManager.instance.userOj.id = int.Parse(jsonData["data"]["id"].ToString());
+				}
+				if(jsonData["data"]["username"]!=null){
+					GameManager.instance.userOj.phoneNum = jsonData["data"]["username"].ToString();
+				}
+				if(jsonData["data"]["password"]!=null){
+					GameManager.instance.userOj.password = jsonData["data"]["password"].ToString();
+				}
+				if(jsonData["data"]["realname"]!=null){
+					GameManager.instance.userOj.nickname = jsonData["data"]["realname"].ToString();
+				}
+				if(jsonData["data"]["score"]!=null){
+					GameManager.instance.userOj.score = int.Parse(jsonData["data"]["score"].ToString());
+				}
+				if(jsonData["data"]["allnum"]!=null){
+					GameManager.instance.userOj.playtimes = int.Parse(jsonData["data"]["allnum"].ToString());
+				}
+				if(jsonData["data"]["winnum"]!=null||jsonData["data"]["allnum"]!=null){
+					GameManager.instance.userOj.winRate = int.Parse(jsonData["data"]["winnum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
+				}
+				if(jsonData["data"]["gatenum"]!=null||jsonData["data"]["allnum"]!=null){
+					GameManager.instance.userOj.inRace = int.Parse(jsonData["data"]["gatenum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
+				}
+				if(jsonData["data"]["rank"]!=null){
+					GameManager.instance.userOj.range = int.Parse(jsonData["data"]["rank"].ToString());
+				}
+				if(jsonData["data"]["level"]!=null){
+					GameManager.instance.userOj.level = int.Parse(jsonData["data"]["level"].ToString());
+				}
+				if(jsonData["data"]["pic"]!=null){
+					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
+				}
 			} else if (jsonData ["callStatus"].Equals ("FAILED")) {
 				RegistererrorText.color = new Color (0.8f, 0.2f, 0.2f);
 				if (((IDictionary)jsonData).Contains ("errorCode")) {
@@ -437,8 +487,30 @@ public class Login : MonoBehaviour {
 
 	IEnumerator FillInfoRequest(){
 		startRVCodeTimer = false;
-		WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/register?username="+RegisterPhoneNumInputField.text+"&password="+RegisterPasswordInputField.text+"&code="+RegisterVarifyCodeInputField.text);
-		while (!w.isDone){yield return new WaitForEndOfFrame();}
-		JsonData jsonData = JsonMapper.ToObject (w.text);
+			WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/addUserInfo?realName=" + FillInfoNicknameInputField.text + "&pic=" + GameManager.instance.AvatarNum + "&token=" + GameManager.instance.userOj.token);
+			while (!w.isDone) {
+				yield return new WaitForEndOfFrame ();
+			}
+			JsonData jsonData = JsonMapper.ToObject (w.text);
+			if (((IDictionary)jsonData).Contains ("callStatus")) {
+				Debug.Log ("完善信息结果" + jsonData ["callStatus"]);	
+				if (jsonData ["callStatus"].Equals ("SUCCEED")) {			
+					gameObject.GetComponent<AlertController>().hideall();
+						GameManager.instance.isInfoFilled = true;
+						GameManager.instance.InfoOpen = false;
+					Debug.Log("信息已完善");
+				} else if (jsonData ["callStatus"].Equals ("FAILED")) {
+					LoginerrorText.color = new Color (0.8f, 0.2f, 0.2f);
+					if (((IDictionary)jsonData).Contains ("errorCode")) {
+						Debug.Log("信息完善失败");
+					} else {
+						Debug.Log ("返回的json对象中并没有“errorCode”键");
+					} 		
+				} else {
+					Debug.Log ("callStatus”值异常");
+				}
+			} else {
+				Debug.Log ("返回的json对象中并没有“callStatus”键");
+			}
 	}
 }
