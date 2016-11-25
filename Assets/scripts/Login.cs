@@ -33,11 +33,13 @@ public class Login : MonoBehaviour {
 	public InputField FillInfoNicknameInputField;
 	public ToggleGroup GenderToggle;
 
+	public InputField FindFriendInputField;
 
 	public Text LoginerrorText;
 	public Text ForgetPasswordText;
 	public Text RegistererrorText;
 	public Text FillInfoerrerText;
+	public Text FindFrienderrorText;
 
 	public GameObject InfoButtonAvatar;
 	private Object [] sprites;
@@ -89,11 +91,20 @@ public class Login : MonoBehaviour {
 
 	//注册提交
 	public void registerSubmit(){
-		
+
 	} 
 
 	//申请查看好友列表
 	//查找好友
+	public void findFriend(){
+		if (FindFriendInputField.text != "") {
+			StartCoroutine (findUserRequest ());
+		} else {
+			FindFrienderrorText.text = "请先输入要搜索好友的手机号!";
+			Debug.Log("请先输入要搜索好友的手机号！");
+		}
+	}
+
 	//添加好友
 	//申请查看富豪榜列表
 	//申请查看玩家资料卡
@@ -494,4 +505,36 @@ public class Login : MonoBehaviour {
 		gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
 		gameObject.transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(true);
 	}
+
+	IEnumerator findUserRequest(){
+		WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/findUser?userName=" + FindFriendInputField.text);
+		while (!w.isDone) {
+			yield return new WaitForEndOfFrame ();
+		}
+		JsonData jsonData = JsonMapper.ToObject (w.text);
+		if (((IDictionary)jsonData).Contains ("callStatus")) {
+			Debug.Log ("搜索好友结果" + jsonData ["callStatus"]);	
+			if (jsonData ["callStatus"].Equals ("SUCCEED")) {
+				Debug.Log("搜索成功");
+				FindFrienderrorText.text = "";
+			} else if (jsonData ["callStatus"].Equals ("FAILED")) {
+				FindFrienderrorText.color = new Color (0.8f, 0.2f, 0.2f);
+				if (((IDictionary)jsonData).Contains ("errorCode")) {
+					if (jsonData ["errorCode"].Equals ("Username_NOT_Exsit")) {
+						FindFrienderrorText.text = "手机号不存在，请重新输入!";
+						Debug.Log ("搜索的手机号不存在");
+					} else {
+						Debug.Log ("errorCode值异常");
+					}
+				} else {
+					Debug.Log ("返回的json对象中并没有“errorCode”键");
+				} 		
+			} else {
+				Debug.Log ("callStatus”值异常");
+			}
+		} else {
+			Debug.Log ("返回的json对象中并没有“callStatus”键");
+		}
+	}
+
 }
