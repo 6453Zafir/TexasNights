@@ -16,7 +16,7 @@ public class User
 	/// <summary>
 	/// 
 	/// </summary>
-	public string phoneNum { get; set; }
+	public string username { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
@@ -24,43 +24,56 @@ public class User
 	/// <summary>
 	/// 
 	/// </summary>
-	public string nickname { get; set; }
+	public string realname { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public string gender { get; set; }
+	public int? score { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public int score { get; set; }
+	public string rank { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public int range { get; set; }
+	public string pic { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public int avatar { get; set; }
+	public int? level { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public int level { get; set; }
+	public int? winnum { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public double winRate { get; set; }
+	public int? gatenum { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public double inRace { get; set; }
+	public int? allnum { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public int playtimes { get; set; }
+	public int? allinnum { get; set; }
 	/// <summary>
 	/// 
 	/// </summary>
-	public int maxScore { get; set; }
+	public int? roomIndex { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	public DateTime? registerDate { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	public string friends { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	public int? type { get; set; }
+
 }
 
 public class Root

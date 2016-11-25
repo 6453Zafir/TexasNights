@@ -208,13 +208,24 @@ public class Login : MonoBehaviour {
 			JsonData jsonData = JsonMapper.ToObject (w.text);
 			
 			if (((IDictionary)jsonData).Contains ("callStatus")) {
-				Debug.Log ("登录结果" + jsonData ["callStatus"]);
 				
+			Debug.Log ("登录结果" + jsonData ["callStatus"]);
 				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
 					LoginerrorText.color = Color.green;
 					LoginerrorText.text = "登录成功!";
-					Debug.Log ("登录成功");
-				//User GameManager.instance. = new User();
+				Debug.Log(jsonData["data"]);
+			
+				string userJson = JsonMapper.ToJson(jsonData["data"]);
+				User userTemp = JsonMapper.ToObject<User>(userJson);
+				GameManager.instance.userOj = userTemp;
+				if(jsonData["token"]!=null){
+					GameManager.instance.userOj.token = jsonData["token"].ToString();
+				}
+				Debug.Log(GameManager.instance.userOj);
+
+				//User userEntity =  JsonMapper.ToObject<User>(JsonMapper.ToObject(jsonData["data"]));
+				//创建用户实例
+				/*
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
 				}
@@ -252,7 +263,11 @@ public class Login : MonoBehaviour {
 					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
 				}
 				Debug.Log(GameManager.instance.userOj);
-				if(GameManager.instance.userOj.avatar == 0){
+*/
+
+				//若已完善个人信息，则直接隐藏弹窗，若没有完善个人信息，则跳转至完善信息页面
+				//信息是否完善通过判断返回的userOj中的头像是否为0判断
+				if(GameManager.instance.userOj.pic == null || int.Parse(GameManager.instance.userOj.pic) == 0){
 					GameManager.instance.isLogin = true;
 					gameObject.transform.GetChild(0).gameObject.SetActive(false);
 					gameObject.transform.GetChild(1).gameObject.SetActive(true);
@@ -419,7 +434,7 @@ public class Login : MonoBehaviour {
 				GameManager.instance.isRegister = true;
 				gameObject.GetComponent<AlertController>().toFillInfomation();
 				Debug.Log("注册成功");
-
+				/*
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
 				}
@@ -456,6 +471,7 @@ public class Login : MonoBehaviour {
 				if(jsonData["data"]["pic"]!=null){
 					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
 				}
+				*/
 			} else if (jsonData ["callStatus"].Equals ("FAILED")) {
 				RegistererrorText.color = new Color (0.8f, 0.2f, 0.2f);
 				if (((IDictionary)jsonData).Contains ("errorCode")) {
