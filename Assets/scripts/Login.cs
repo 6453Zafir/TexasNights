@@ -214,18 +214,6 @@ public class Login : MonoBehaviour {
 					LoginerrorText.color = Color.green;
 					LoginerrorText.text = "登录成功!";
 					Debug.Log ("登录成功");
-				
-				if(GameManager.instance.userOj.avatar == 0){
-					GameManager.instance.isLogin = true;
-					gameObject.transform.GetChild(0).gameObject.SetActive(false);
-					gameObject.transform.GetChild(1).gameObject.SetActive(true);
-					gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
-					gameObject.transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(true);
-				}else{
-					gameObject.GetComponent<AlertController> ().hideall ();
-					GameManager.instance.isLogin = true;
-					GameManager.instance.InfoOpen = false;
-				}
 				//User GameManager.instance. = new User();
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
@@ -262,6 +250,18 @@ public class Login : MonoBehaviour {
 				}
 				if(jsonData["data"]["pic"]!=null){
 					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
+				}
+				Debug.Log(GameManager.instance.userOj);
+				if(GameManager.instance.userOj.avatar == 0){
+					GameManager.instance.isLogin = true;
+					gameObject.transform.GetChild(0).gameObject.SetActive(false);
+					gameObject.transform.GetChild(1).gameObject.SetActive(true);
+					gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+					gameObject.transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(true);
+				}else{
+					gameObject.GetComponent<AlertController> ().hideall ();
+					GameManager.instance.isLogin = true;
+					GameManager.instance.InfoOpen = false;
 				}
 
 
