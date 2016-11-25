@@ -427,7 +427,6 @@ public class Login : MonoBehaviour {
 	}
 
 	IEnumerator FillInfoRequest(){
-		startRVCodeTimer = false;
 			WWW w = new WWW ("http://139.224.59.3:8080/poker/api/user/addUserInfo?realName=" + FillInfoNicknameInputField.text + "&pic=" + GameManager.instance.AvatarNum + "&token=" + GameManager.instance.userOj.token);
 			while (!w.isDone) {
 				yield return new WaitForEndOfFrame ();
@@ -435,7 +434,7 @@ public class Login : MonoBehaviour {
 			JsonData jsonData = JsonMapper.ToObject (w.text);
 			if (((IDictionary)jsonData).Contains ("callStatus")) {
 				Debug.Log ("完善信息结果" + jsonData ["callStatus"]);	
-				if (jsonData ["callStatus"].Equals ("SUCCEED")) {			
+				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
 					gameObject.GetComponent<AlertController>().hideall();
 						GameManager.instance.isInfoFilled = true;
 						GameManager.instance.InfoOpen = false;
@@ -486,5 +485,13 @@ public class Login : MonoBehaviour {
 		} else {
 			print("the avatar havn't newed");
 		}
+	}
+
+	public void infoToEditinfo(){
+		gameObject.transform.GetChild (0).gameObject.SetActive (false);
+		gameObject.transform.GetChild (2).gameObject.SetActive (false);
+		gameObject.transform.GetChild (1).gameObject.SetActive (true);
+		gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+		gameObject.transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(true);
 	}
 }
