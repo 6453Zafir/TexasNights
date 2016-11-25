@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\实习\CITY\Assets\Standard Assets\Vehicles\Car\Scripts\CarUserControl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Login.cs">
     <Files>
-      <File FileName="..\实习\CITY\Assets\Standard Assets\Vehicles\Car\Scripts\CarController.cs" Line="1" Column="1" />
-      <File FileName="..\实习\CITY\Assets\Standard Assets\Vehicles\Car\Scripts\CarSelfRighting.cs" Line="1" Column="1" />
-      <File FileName="..\实习\CITY\Assets\Standard Assets\Vehicles\Car\Scripts\BrakeLight.cs" Line="1" Column="1" />
-      <File FileName="..\实习\CITY\Assets\Standard Assets\Vehicles\Car\Scripts\CarUserControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\UserEntity.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Login.cs" Line="452" Column="8" />
+      <File FileName="Assets\scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\CameraController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

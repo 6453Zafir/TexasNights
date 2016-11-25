@@ -446,6 +446,12 @@ public class Login : MonoBehaviour {
 			if (((IDictionary)jsonData).Contains ("callStatus")) {
 				Debug.Log ("完善信息结果" + jsonData ["callStatus"]);	
 				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
+					string userJson = JsonMapper.ToJson(jsonData["data"]);
+					User userTemp = JsonMapper.ToObject<User>(userJson);
+					GameManager.instance.userOj = userTemp;
+				if(jsonData["token"]!=null){
+					GameManager.instance.userOj.token = jsonData["token"].ToString();
+				}
 					gameObject.GetComponent<AlertController>().hideall();
 						GameManager.instance.isInfoFilled = true;
 						GameManager.instance.InfoOpen = false;
