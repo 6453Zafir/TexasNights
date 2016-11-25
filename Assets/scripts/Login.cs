@@ -213,61 +213,17 @@ public class Login : MonoBehaviour {
 				if (jsonData ["callStatus"].Equals ("SUCCEED")) {
 					LoginerrorText.color = Color.green;
 					LoginerrorText.text = "登录成功!";
-				Debug.Log(jsonData["data"]);
-			
+
 				string userJson = JsonMapper.ToJson(jsonData["data"]);
 				User userTemp = JsonMapper.ToObject<User>(userJson);
 				GameManager.instance.userOj = userTemp;
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
 				}
-				Debug.Log(GameManager.instance.userOj);
-
-				//User userEntity =  JsonMapper.ToObject<User>(JsonMapper.ToObject(jsonData["data"]));
-				//创建用户实例
-				/*
-				if(jsonData["token"]!=null){
-					GameManager.instance.userOj.token = jsonData["token"].ToString();
-				}
-				if(jsonData["data"]["id"]!=null){
-					GameManager.instance.userOj.id = int.Parse(jsonData["data"]["id"].ToString());
-				}
-				if(jsonData["data"]["username"]!=null){
-					GameManager.instance.userOj.phoneNum = jsonData["data"]["username"].ToString();
-				}
-				if(jsonData["data"]["password"]!=null){
-					GameManager.instance.userOj.password = jsonData["data"]["password"].ToString();
-				}
-				if(jsonData["data"]["realname"]!=null){
-					GameManager.instance.userOj.nickname = jsonData["data"]["realname"].ToString();
-				}
-				if(jsonData["data"]["score"]!=null){
-					GameManager.instance.userOj.score = int.Parse(jsonData["data"]["score"].ToString());
-				}
-				if(jsonData["data"]["allnum"]!=null){
-					GameManager.instance.userOj.playtimes = int.Parse(jsonData["data"]["allnum"].ToString());
-				}
-				if(jsonData["data"]["winnum"]!=null||jsonData["data"]["allnum"]!=null){
-					GameManager.instance.userOj.winRate = int.Parse(jsonData["data"]["winnum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
-				}
-				if(jsonData["data"]["gatenum"]!=null||jsonData["data"]["allnum"]!=null){
-					GameManager.instance.userOj.inRace = int.Parse(jsonData["data"]["gatenum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
-				}
-				if(jsonData["data"]["rank"]!=null){
-					GameManager.instance.userOj.range = int.Parse(jsonData["data"]["rank"].ToString());
-				}
-				if(jsonData["data"]["level"]!=null){
-					GameManager.instance.userOj.level = int.Parse(jsonData["data"]["level"].ToString());
-				}
-				if(jsonData["data"]["pic"]!=null){
-					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
-				}
-				Debug.Log(GameManager.instance.userOj);
-*/
-
+				Debug.Log(GameManager.instance.userOj.pic);
 				//若已完善个人信息，则直接隐藏弹窗，若没有完善个人信息，则跳转至完善信息页面
 				//信息是否完善通过判断返回的userOj中的头像是否为0判断
-				if(GameManager.instance.userOj.pic == null || int.Parse(GameManager.instance.userOj.pic) == 0){
+				if(GameManager.instance.userOj.pic == "" || int.Parse(GameManager.instance.userOj.pic) == 0){
 					GameManager.instance.isLogin = true;
 					gameObject.transform.GetChild(0).gameObject.SetActive(false);
 					gameObject.transform.GetChild(1).gameObject.SetActive(true);
@@ -431,47 +387,16 @@ public class Login : MonoBehaviour {
 			if (jsonData ["callStatus"].Equals ("SUCCEED")) {
 				RegistererrorText.color = Color.green;
 				RegistererrorText.text="注册成功";
-				GameManager.instance.isRegister = true;
-				gameObject.GetComponent<AlertController>().toFillInfomation();
 				Debug.Log("注册成功");
-				/*
+				string userJson = JsonMapper.ToJson(jsonData["data"]);
+				User userTemp = JsonMapper.ToObject<User>(userJson);
+				GameManager.instance.userOj = userTemp;
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
 				}
-				if(jsonData["data"]["id"]!=null){
-					GameManager.instance.userOj.id = int.Parse(jsonData["data"]["id"].ToString());
-				}
-				if(jsonData["data"]["username"]!=null){
-					GameManager.instance.userOj.phoneNum = jsonData["data"]["username"].ToString();
-				}
-				if(jsonData["data"]["password"]!=null){
-					GameManager.instance.userOj.password = jsonData["data"]["password"].ToString();
-				}
-				if(jsonData["data"]["realname"]!=null){
-					GameManager.instance.userOj.nickname = jsonData["data"]["realname"].ToString();
-				}
-				if(jsonData["data"]["score"]!=null){
-					GameManager.instance.userOj.score = int.Parse(jsonData["data"]["score"].ToString());
-				}
-				if(jsonData["data"]["allnum"]!=null){
-					GameManager.instance.userOj.playtimes = int.Parse(jsonData["data"]["allnum"].ToString());
-				}
-				if(jsonData["data"]["winnum"]!=null||jsonData["data"]["allnum"]!=null){
-					GameManager.instance.userOj.winRate = int.Parse(jsonData["data"]["winnum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
-				}
-				if(jsonData["data"]["gatenum"]!=null||jsonData["data"]["allnum"]!=null){
-					GameManager.instance.userOj.inRace = int.Parse(jsonData["data"]["gatenum"].ToString())/int.Parse(jsonData["data"]["allnum"].ToString());
-				}
-				if(jsonData["data"]["rank"]!=null){
-					GameManager.instance.userOj.range = int.Parse(jsonData["data"]["rank"].ToString());
-				}
-				if(jsonData["data"]["level"]!=null){
-					GameManager.instance.userOj.level = int.Parse(jsonData["data"]["level"].ToString());
-				}
-				if(jsonData["data"]["pic"]!=null){
-					GameManager.instance.userOj.avatar = int.Parse(jsonData["data"]["pic"].ToString());
-				}
-				*/
+				GameManager.instance.isRegister = true;
+				gameObject.GetComponent<AlertController>().toFillInfomation();
+
 			} else if (jsonData ["callStatus"].Equals ("FAILED")) {
 				RegistererrorText.color = new Color (0.8f, 0.2f, 0.2f);
 				if (((IDictionary)jsonData).Contains ("errorCode")) {
