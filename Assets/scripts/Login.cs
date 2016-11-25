@@ -39,12 +39,11 @@ public class Login : MonoBehaviour {
 	public Text RegistererrorText;
 	public Text FillInfoerrerText;
 
-
-
+	public GameObject InfoButtonAvatar;
 	private Object [] sprites;
 	private GameObject avatar;
 	private SpriteRenderer renderer;
-
+	private SpriteRenderer InfoButtonRenderer;
 
 	void Start(){
 		//头像按钮
@@ -55,6 +54,7 @@ public class Login : MonoBehaviour {
 		avatar.layer = 8;
 		if (avatar != null) {
 			renderer = avatar.AddComponent<SpriteRenderer> ();
+			//InfoButtonRenderer = InfoButtonAvatar.GetComponent<SpriteRenderer>();
 			sprites = Resources.LoadAll ("avatars");
 			renderer.sortingLayerName = LAYER_NAME;
 			renderer.sortingOrder = 1;
@@ -223,7 +223,7 @@ public class Login : MonoBehaviour {
 				Debug.Log(GameManager.instance.userOj.pic);
 				//若已完善个人信息，则直接隐藏弹窗，若没有完善个人信息，则跳转至完善信息页面
 				//信息是否完善通过判断返回的userOj中的头像是否为0判断
-				if(GameManager.instance.userOj.pic == "" || int.Parse(GameManager.instance.userOj.pic) == 0){
+				if(GameManager.instance.userOj.pic == null || int.Parse(GameManager.instance.userOj.pic) == 0){
 					GameManager.instance.isLogin = true;
 					gameObject.transform.GetChild(0).gameObject.SetActive(false);
 					gameObject.transform.GetChild(1).gameObject.SetActive(true);
@@ -453,5 +453,38 @@ public class Login : MonoBehaviour {
 			} else {
 				Debug.Log ("返回的json对象中并没有“callStatus”键");
 			}
+	}
+
+	public void getUserInfo(){
+		GameObject infopanel = gameObject.transform.GetChild(2).transform.GetChild(0).gameObject;
+		float? winrate = GameManager.instance.userOj.winnum / GameManager.instance.userOj.allnum;
+		infopanel.transform.GetChild (0).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.username;
+		infopanel.transform.GetChild (1).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.realname;
+		infopanel.transform.GetChild (2).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.score.ToString();
+		infopanel.transform.GetChild (3).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.level.ToString();
+		//infopanel.transform.GetChild (4).gameObject.GetComponent<Text> ().text = winrate.ToString();
+		//infopanel.transform.GetChild (5).gameObject.GetComponent<Text> ().text = (GameManager.instance.userOj.gatenum/GameManager.instance.userOj.allnum).ToString();
+		infopanel.transform.GetChild (6).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.rank;
+		infopanel.transform.GetChild (7).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.allnum.ToString();
+		infopanel.transform.GetChild (8).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.allinnum.ToString();
+		infopanel.transform.GetChild (9).gameObject.GetComponent<Text> ().text = GameManager.instance.userOj.registerDate.ToString();
+
+		GameObject infoavatar = new GameObject ("infoavatar");
+		infoavatar.transform.parent = infopanel.transform.GetChild (10).transform;
+		infoavatar.transform.position = infopanel.transform.GetChild (10).transform.position;
+		infoavatar.transform.localScale = new Vector3 (4.5f, 4.4f, 5f);
+		infoavatar.layer = 8;
+
+		if (infoavatar != null) {
+			InfoButtonRenderer = infoavatar.AddComponent<SpriteRenderer> ();
+			//InfoButtonRenderer = InfoButtonAvatar.GetComponent<SpriteRenderer>();
+			sprites = Resources.LoadAll ("avatars");
+			InfoButtonRenderer.sortingLayerName = LAYER_NAME;
+			InfoButtonRenderer.sortingOrder = 1;
+			int avatarNum = int.Parse(GameManager.instance.userOj.pic);
+			InfoButtonRenderer.sprite = (Sprite)sprites [avatarNum];
+		} else {
+			print("the avatar havn't newed");
+		}
 	}
 }
