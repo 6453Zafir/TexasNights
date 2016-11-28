@@ -15,7 +15,6 @@ public class AlertController : MonoBehaviour {
 			child.transform.GetChild(0).gameObject.SetActive(true);
 		} else {
 			child.gameObject.SetActive(false);
-			Destroy(child.gameObject);
 		}
 	}
 
@@ -41,7 +40,6 @@ public class AlertController : MonoBehaviour {
 			loginpanel.SetActive(false);
 			registerpanel.SetActive(true);
 			registerpanel.transform.GetChild(0).gameObject.SetActive(true);
-			//registerpanel.transform.GetChild(0).transform.GetChild(4).gameObject.GetComponent<Button>().interactable = true;
 		} else {
 			loginpanel.SetActive(true);
 			registerpanel.SetActive(false);
