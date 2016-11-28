@@ -69,12 +69,18 @@ public class Login : MonoBehaviour {
 		if (startFVCodeTimer) {
 			VerifyFCodeTimeLimit -= Time.deltaTime;
 			FVtimer.text = VerifyFCodeTimeLimit.ToString ("f0");
+			if(VerifyFCodeTimeLimit<=0){
+				VerifyFCodeTimeLimit =60;
+			}
 		} else {
 			FVtimer.text = "";
 		}
 		if (startRVCodeTimer) {
 			VerifyRCodeTimeLimit -= Time.deltaTime;
 			RVtimer.text = VerifyRCodeTimeLimit.ToString ("f0");
+			if(VerifyRCodeTimeLimit<=0){
+				VerifyRCodeTimeLimit =60;
+			}
 		} else {
 			RVtimer.text = "";
 		}
@@ -324,10 +330,9 @@ public class Login : MonoBehaviour {
 					Debug.Log ("注册验证码请求结果" + jsonData ["callStatus"]);	
 					if (jsonData ["callStatus"].Equals ("SUCCEED")) {
 						if (VerifyRCodeTimeLimit >= 0) {
-							startRVCodeTimer = true;
 							RegisterGetVerifyCode.interactable = false;
+							startRVCodeTimer = true;
 							RegistererrorText.text = "验证码已发送";
-							Debug.Log ("验证码已发送");
 						} else {
 							startRVCodeTimer = false;
 							RegisterGetVerifyCode.interactable = true;
@@ -367,7 +372,7 @@ public class Login : MonoBehaviour {
 					if (jsonData ["errorCode"].Equals ("Verify_Code_5min")) {
 						LoginerrorText.text = "验证码超时!";
 						Debug.Log ("验证码超时");
-					} else if (jsonData ["errorCode"].Equals ("User_notExist")) {
+					} else if (jsonData ["errorCode"].Equals ("Username_NOT_Exist")) {
 						LoginerrorText.text = "用户不存在!";
 						Debug.Log ("用户不存在");
 					}else if(jsonData ["errorCode"].Equals ("Verify_Code_notExist")){

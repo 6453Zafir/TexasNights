@@ -81,6 +81,7 @@
 -define:UNITY_PRO_LICENSE
 Assets/scripts/AlertController.cs
 Assets/scripts/CameraController.cs
+Assets/scripts/EnterRoom.cs
 Assets/scripts/GameManager.cs
 Assets/scripts/HelpViewController.cs
 Assets/scripts/Login.cs

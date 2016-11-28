@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using System.Net;
+using System.Net.Sockets;
+using System;
 
 public class PlayController : MonoBehaviour {
 	public GameObject PlayerRoot;
@@ -66,4 +69,15 @@ public class PlayController : MonoBehaviour {
 		Debug.Log("arm should move now");
 		return;
 	}
+
+	public void EnterRoom(){
+		TcpClient client = new TcpClient ();
+		try{
+			client.Connect(IPAddress.Parse("139.224.59.3"),8080);
+		}catch(Exception ex){
+			Debug.Log("客户端连接异常"+ex.Message);
+		}
+
+	}
+
 }
