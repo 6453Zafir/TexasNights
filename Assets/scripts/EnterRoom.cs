@@ -15,10 +15,12 @@ public class EnterRoom : MonoBehaviour {
 	void Update () {
 	
 	}
+
 	public void enterRoom(){
 		TcpClient client = new TcpClient ();
 		try{
 			client.Connect(IPAddress.Parse("139.224.59.3"),8080);
+			Debug.Log("webSoket连接成功！");
 		}catch(Exception ex){
 			Debug.Log("客户端连接异常"+ex.Message);
 		}
