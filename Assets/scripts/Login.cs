@@ -237,7 +237,6 @@ public class Login : MonoBehaviour {
 				if(jsonData["token"]!=null){
 					GameManager.instance.userOj.token = jsonData["token"].ToString();
 				}
-				Debug.Log(GameManager.instance.userOj.pic);
 				//若已完善个人信息，则直接隐藏弹窗，若没有完善个人信息，则跳转至完善信息页面
 				//信息是否完善通过判断返回的userOj中的头像是否为0判断
 				if(GameManager.instance.userOj.pic == null || int.Parse(GameManager.instance.userOj.pic) == 0){
