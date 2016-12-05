@@ -7,8 +7,10 @@ using System.Net.Sockets;
 using WebSocket4Net.Protocol;
 using System;
 using LitJson;
+using UnityEngine.UI;
 
 public class enterRoom : MonoBehaviour {
+	public Text message;
 	private string token;
 	private string enterRoomAddress;
 
@@ -24,17 +26,6 @@ public class enterRoom : MonoBehaviour {
    	   	 	}
 		}
         ";
-	// Use this for initialization
-	void Start () {
-
-
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void ClientSend(){
 		string token = GameManager.instance.userOj.token;
@@ -53,7 +44,8 @@ public class enterRoom : MonoBehaviour {
 
 	private void websocket_MessageReceived(object sender, MessageReceivedEventArgs e)
 	{
-		Debug.Log ("message from the server: " + e.Message);
+		//Debug.Log ("message from the server: " + e.Message);
+		message.text = e.Message;
 	}
 
 	private void websocket_Closed(object sender, EventArgs e){
