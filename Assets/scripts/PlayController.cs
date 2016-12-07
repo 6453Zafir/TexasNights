@@ -34,7 +34,6 @@ public class PlayController : MonoBehaviour {
 				Invoke("movePeopleArm",0);
 				isDealed = true;
 			}else{
-				Debug.Log("Everyobdy has their cards now");
 			}	
 		} else {
 			//等待玩家
@@ -66,18 +65,9 @@ public class PlayController : MonoBehaviour {
 		Animation moveArm = People.transform.GetChild (2).transform.GetComponent<Animation> ();
 		moveArm.Play ();
 		moveArm["moveArm"].speed = 1;
-		Debug.Log("arm should move now");
 		return;
 	}
 
-	public void EnterRoom(){
-		TcpClient client = new TcpClient ();
-		try{
-			client.Connect(IPAddress.Parse("139.224.59.3"),8080);
-		}catch(Exception ex){
-			Debug.Log("客户端连接异常"+ex.Message);
-		}
 
-	}
 
 }

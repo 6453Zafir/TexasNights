@@ -4,13 +4,18 @@ using UnityStandardAssets.ImageEffects;
 
 public class CameraController : MonoBehaviour {
 	public GameObject FlexableCanvas;
+	public Camera EffectCamera;
 	private Animator CamAniController;
+	private float s_baseOrthographicSize;
 
 	void Start () {	
 		CamAniController = GetComponent<Animator>();
 	}
 
 	void Update () {
+		s_baseOrthographicSize = Screen.height / 100.0f / 2.0f;
+		Camera.main.orthographicSize = s_baseOrthographicSize;
+		EffectCamera.GetComponent<Camera>().orthographicSize = s_baseOrthographicSize;
 		GameObject infopanelarea = FlexableCanvas.transform.GetChild (2).gameObject.transform.GetChild(0).gameObject;
 		GameObject friendpanelarea = FlexableCanvas.transform.GetChild (3).gameObject.transform.GetChild(0).gameObject;
 		GameObject settingpanelarea = FlexableCanvas.transform.GetChild (4).gameObject.transform.GetChild(0).gameObject;
